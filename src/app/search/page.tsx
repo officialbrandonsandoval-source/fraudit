@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { supabase } from "@/lib/supabase";
 
 interface Provider {
   id: string;
@@ -29,12 +30,21 @@ function RiskBadge({ score }: { score: number }) {
 }
 
 async function searchProviders(query: string): Promise<Provider[]> {
-  const base = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-  const res = await fetch(`${base}/api/search?q=${encodeURIComponent(query)}`, {
-    cache: "no-store",
-  });
-  if (!res.ok) return [];
-  return res.json();
+  if (!query) return [];
+
+  const { data, error } = await supabase
+    .from("Provider")
+    .select("*")
+    .or(`name.ilike.%${query}%,address.ilike.%${query}%,city.ilike.%${query}%,zip.ilike.%${query}%,state.ilike.%${query}%`)
+    .order("riskScore", { ascending: false })
+    .limit(50);
+
+  if (error) {
+    console.error("Search error:", error);
+    return [];
+  }
+
+  return data || [];
 }
 
 export default async function SearchPage({
