@@ -1,6 +1,5 @@
-export const runtime = "nodejs";
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 
 export async function GET(
   _request: NextRequest,
@@ -8,13 +7,15 @@ export async function GET(
 ) {
   const { id } = await params;
 
-  const provider = await prisma.provider.findUnique({
-    where: { id },
-  });
+  const { data, error } = await supabase
+    .from("Provider")
+    .select("*")
+    .eq("id", id)
+    .single();
 
-  if (!provider) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (error || !data) {
+    return NextResponse.json({ error: "Provider not found" }, { status: 404 });
   }
 
-  return NextResponse.json(provider);
+  return NextResponse.json(data);
 }

@@ -1,24 +1,24 @@
-export const runtime = "nodejs";
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
   const { providerId, content } = body;
 
-  if (!providerId || !content?.trim()) {
-    return NextResponse.json(
-      { error: "providerId and content are required" },
-      { status: 400 }
-    );
+  if (!providerId || !content) {
+    return NextResponse.json({ error: "Missing fields" }, { status: 400 });
   }
 
-  const tip = await prisma.tip.create({
-    data: {
-      providerId,
-      content: content.trim(),
-    },
-  });
+  const { data, error } = await supabase
+    .from("Tip")
+    .insert({ providerId, content })
+    .select()
+    .single();
 
-  return NextResponse.json(tip, { status: 201 });
+  if (error) {
+    console.error("Tip error:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json(data);
 }

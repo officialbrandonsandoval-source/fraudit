@@ -1,27 +1,22 @@
-export const runtime = "nodejs";
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { supabase } from "@/lib/supabase";
 
 export async function GET(request: NextRequest) {
   const q = request.nextUrl.searchParams.get("q")?.trim() || "";
 
-  if (!q) {
-    return NextResponse.json([]);
+  if (!q) return NextResponse.json([]);
+
+  const { data, error } = await supabase
+    .from("Provider")
+    .select("*")
+    .or(`name.ilike.%${q}%,address.ilike.%${q}%,city.ilike.%${q}%,zip.ilike.%${q}%,state.ilike.%${q}%`)
+    .order("riskScore", { ascending: false })
+    .limit(50);
+
+  if (error) {
+    console.error("Search error:", error);
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  const providers = await prisma.provider.findMany({
-    where: {
-      OR: [
-        { name: { contains: q, mode: "insensitive" } },
-        { address: { contains: q, mode: "insensitive" } },
-        { city: { contains: q, mode: "insensitive" } },
-        { zip: { contains: q } },
-        { state: { contains: q, mode: "insensitive" } },
-      ],
-    },
-    orderBy: { riskScore: "desc" },
-    take: 50,
-  });
-
-  return NextResponse.json(providers);
+  return NextResponse.json(data || []);
 }
