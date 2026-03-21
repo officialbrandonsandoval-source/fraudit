@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Provider {
+  id          String   @id @default(cuid())
+  name        String
+  address     String
+  city        String
+  state       String
+  zip         String
+  programs    String[]
+  totalPaid   Float
+  riskScore   Int
+  anomalies   String[]
+  licenseDate DateTime?
+  ownerId     String?
+  createdAt   DateTime @default(now())
+}
+
+model Tip {
+  id         String   @id @default(cuid())
+  providerId String
+  content    String
+  createdAt  DateTime @default(now())
+}
