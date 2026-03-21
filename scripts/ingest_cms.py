@@ -1,15 +1,26 @@
 """
-ingest_cms.py — CMS Medicare Provider Payment Data Ingestion (California)
+ingest_cms.py — CMS Medicare Provider Payment Data Ingestion (ALL 50 STATES)
 
-Downloads real CMS Medicare physician/supplier payment data for CA,
-deduplicates by NPI, and upserts into Supabase Provider table.
-Then runs the scoring engine.
+Downloads real CMS Medicare physician/supplier payment data for every US state,
+deduplicates by NPI, scores each provider, and upserts into Supabase.
 """
 
 import os
 import sys
-import json
+import time
 import requests
+
+
+ALL_STATES = [
+    "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA",
+    "HI","ID","IL","IN","IA","KS","KY","LA","ME","MD",
+    "MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ",
+    "NM","NY","NC","ND","OH","OK","OR","PA","RI","SC",
+    "SD","TN","TX","UT","VT","VA","WA","WV","WI","WY","DC"
+]
+
+CMS_BASE_URL = "https://data.cms.gov/data-api/v1/dataset/8ba584c6-a43a-4b0b-a35a-eb9a59e3a571/data"
+PAGE_SIZE = 5000
 
 
 def load_env():
@@ -24,36 +35,44 @@ def load_env():
     return env
 
 
-def fetch_cms_data():
-    """Paginate through CMS API for CA providers (by Provider, 2022)."""
-    base_url = "https://data.cms.gov/data-api/v1/dataset/8ba584c6-a43a-4b0b-a35a-eb9a59e3a571/data"
+def fetch_state(state: str) -> list:
+    """Paginate through ALL records for a given state — no page cap."""
     all_records = []
-    page_size = 5000
+    offset = 0
 
-    for offset in range(0, 10000, page_size):
+    while True:
         params = {
-            "filter[Rndrng_Prvdr_State_Abrvtn]": "CA",
-            "size": page_size,
+            "filter[Rndrng_Prvdr_State_Abrvtn]": state,
+            "size": PAGE_SIZE,
             "offset": offset,
         }
-        print(f"  Fetching offset={offset}...")
-        resp = requests.get(base_url, params=params, timeout=120)
-        resp.raise_for_status()
-        data = resp.json()
+        try:
+            resp = requests.get(CMS_BASE_URL, params=params, timeout=120)
+            resp.raise_for_status()
+            data = resp.json()
+        except Exception as e:
+            print(f"    ⚠ Error at offset {offset}: {e} — retrying once...")
+            time.sleep(5)
+            try:
+                resp = requests.get(CMS_BASE_URL, params=params, timeout=120)
+                data = resp.json()
+            except Exception as e2:
+                print(f"    ✗ Failed again: {e2} — skipping page")
+                break
 
         if not data:
             break
 
         all_records.extend(data)
-        print(f"  Got {len(data)} records (total: {len(all_records)})")
+        offset += PAGE_SIZE
 
-        if len(data) < page_size:
+        if len(data) < PAGE_SIZE:
             break
 
     return all_records
 
 
-def deduplicate_by_npi(records):
+def deduplicate_by_npi(records: list, default_state: str) -> dict:
     """Group by NPI, sum payments, keep last address seen."""
     providers = {}
     for r in records:
@@ -64,12 +83,7 @@ def deduplicate_by_npi(records):
 
         first = r.get("Rndrng_Prvdr_First_Name", "")
         last = r.get("Rndrng_Prvdr_Last_Org_Name", "")
-        if first and last:
-            name = f"{first} {last}"
-        elif last:
-            name = last
-        else:
-            name = "Unknown"
+        name = f"{first} {last}".strip() if (first or last) else "Unknown"
 
         if npi in providers:
             providers[npi]["totalPaid"] += payment
@@ -78,44 +92,37 @@ def deduplicate_by_npi(records):
                 "name": name,
                 "address": r.get("Rndrng_Prvdr_St1", ""),
                 "city": r.get("Rndrng_Prvdr_City", ""),
-                "state": r.get("Rndrng_Prvdr_State_Abrvtn", "CA"),
-                "zip": r.get("Rndrng_Prvdr_Zip5", ""),
+                "state": r.get("Rndrng_Prvdr_State_Abrvtn", default_state),
+                "zip": str(r.get("Rndrng_Prvdr_Zip5", "") or ""),
                 "totalPaid": payment,
             }
 
     return providers
 
 
-def upsert_to_supabase(providers, supabase_url, supabase_key):
-    """Upsert providers into Supabase Provider table."""
-    from supabase import create_client
-    client = create_client(supabase_url, supabase_key)
-
-    from cuid2 import cuid_wrapper
-    cuid_generate = cuid_wrapper()
-
+def upsert_to_supabase(providers: dict, client) -> int:
+    """Upsert providers into Supabase Provider table in batches of 500."""
+    import uuid
     rows = []
     for npi, p in providers.items():
         rows.append({
-            "id": cuid_generate(),
-            "name": p["name"],
-            "address": p["address"],
-            "city": p["city"],
-            "state": p["state"],
-            "zip": p["zip"],
+            "id": str(uuid.uuid4()),
+            "name": p["name"][:255],
+            "address": p["address"][:255],
+            "city": p["city"][:100],
+            "state": p["state"][:2],
+            "zip": p["zip"][:10],
             "programs": ["Medicare"],
             "totalPaid": round(p["totalPaid"], 2),
             "riskScore": 0,
             "anomalies": [],
         })
 
-    # Batch upsert in chunks of 500
     batch_size = 500
     total = len(rows)
     for i in range(0, total, batch_size):
         batch = rows[i:i + batch_size]
-        client.table("Provider").insert(batch).execute()
-        print(f"  Inserted batch {i // batch_size + 1} ({min(i + batch_size, total)}/{total})")
+        client.table("Provider").upsert(batch, on_conflict="id").execute()
 
     return total
 
@@ -125,35 +132,45 @@ def main():
     supabase_url = env["NEXT_PUBLIC_SUPABASE_URL"]
     supabase_key = env["SUPABASE_SERVICE_ROLE_KEY"]
 
-    print("=== CMS Medicare Data Ingestion (California) ===")
+    from supabase import create_client
+    client = create_client(supabase_url, supabase_key)
+
+    print("=" * 60)
+    print("  CMS Medicare Data Ingestion — ALL 50 STATES")
+    print("=" * 60)
     print()
 
-    # Step 1: Fetch
-    print("[1/4] Fetching CMS Medicare provider payment data for CA...")
-    records = fetch_cms_data()
-    print(f"  Total raw records: {len(records)}")
+    grand_total_records = 0
+    grand_total_providers = 0
+
+    for i, state in enumerate(ALL_STATES, 1):
+        print(f"[{i:02d}/{len(ALL_STATES)}] {state} — fetching...", end="", flush=True)
+
+        records = fetch_state(state)
+        providers = deduplicate_by_npi(records, state)
+        count = upsert_to_supabase(providers, client)
+
+        grand_total_records += len(records)
+        grand_total_providers += count
+
+        total_paid = sum(p["totalPaid"] for p in providers.values())
+        print(f" {count} providers | ${total_paid:,.0f} total")
+
+    print()
+    print(f"Ingestion complete: {grand_total_providers:,} unique providers across all states")
+    print(f"Raw records processed: {grand_total_records:,}")
     print()
 
-    # Step 2: Deduplicate
-    print("[2/4] Deduplicating by NPI...")
-    providers = deduplicate_by_npi(records)
-    print(f"  Unique providers: {len(providers)}")
-    print()
-
-    # Step 3: Upsert
-    print("[3/4] Upserting into Supabase...")
-    count = upsert_to_supabase(providers, supabase_url, supabase_key)
-    print(f"  Inserted {count} providers")
-    print()
-
-    # Step 4: Run scoring
-    print("[4/4] Running scoring engine...")
+    # Run scoring engine on everything
+    print("Running scoring engine on all providers...")
     sys.path.insert(0, os.path.dirname(__file__))
     from score_providers import run_scoring
     run_scoring(supabase_url, supabase_key)
 
     print()
-    print("=== Ingestion complete ===")
+    print("=" * 60)
+    print("  ALL DONE")
+    print("=" * 60)
 
 
 if __name__ == "__main__":

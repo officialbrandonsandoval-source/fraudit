@@ -93,8 +93,8 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [topFlagged, setTopFlagged] = useState<Provider[]>([]);
   const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState({ totalProviders: 0, totalFlagged: 0, totalTips: 0 });
-  const [displayStats, setDisplayStats] = useState({ providers: 0, flagged: 0, tips: 0 });
+  const [stats, setStats] = useState({ totalProviders: 0, totalAllPaid: 0, totalFlagged: 0, totalTips: 0 });
+  const [displayStats, setDisplayStats] = useState({ providers: 0, allPaid: 0, flagged: 0, tips: 0 });
 
   useEffect(() => {
     fetch("/api/top50")
@@ -123,6 +123,7 @@ export default function Home() {
       const ease = 1 - Math.pow(1 - progress, 3);
       setDisplayStats({
         providers: Math.round(stats.totalProviders * ease),
+        allPaid: Math.round(stats.totalAllPaid * ease),
         flagged: Math.round(stats.totalFlagged * ease),
         tips: Math.round(stats.totalTips * ease),
       });
@@ -147,21 +148,44 @@ export default function Home() {
         <h1 className="mb-3 text-5xl font-bold tracking-tight sm:text-6xl">
           <span className="text-accent">Fraudit</span>
         </h1>
-        <p className="mb-2 text-xl text-zinc-300">Follow the money.</p>
-        <p className="mx-auto max-w-xl text-base text-zinc-500">
+        <p className="mb-6 text-lg text-zinc-400">Follow the money.</p>
+
+        {/* MASSIVE LIVE TOTAL */}
+        <div className="mb-2">
+          <div className="inline-block">
+            <p className="mb-1 text-xs uppercase tracking-widest text-zinc-600">Total Medicare Payments Tracked</p>
+            <div className="text-6xl font-black tabular-nums tracking-tight text-white sm:text-7xl md:text-8xl">
+              {displayStats.allPaid > 0 ? formatDollars(displayStats.allPaid) : (
+                <span className="text-zinc-700">$—</span>
+              )}
+            </div>
+            <p className="mt-2 text-sm text-zinc-600">
+              across{" "}
+              <span className="text-zinc-400 font-medium">
+                {displayStats.providers > 0 ? displayStats.providers.toLocaleString() : "—"} providers
+              </span>
+              {" · "}
+              <span className="text-red-400 font-medium">
+                {displayStats.flagged > 0 ? formatDollars(displayStats.flagged) : "—"} flagged high-risk
+              </span>
+              {" · "}
+              <span className="text-zinc-500">
+                {displayStats.tips > 0 ? displayStats.tips.toLocaleString() : "0"} tips submitted
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <p className="mx-auto mt-6 max-w-xl text-sm text-zinc-600">
           Real-time fraud risk scores built on public government data —
           search any provider, address, city, state, or zip code.
         </p>
       </div>
 
-      {/* ── Stats Counter ── */}
-      {displayStats.providers > 0 && (
+      {/* spacer — stats now in hero */}
+      {false && (
         <p className="mb-6 text-center text-sm text-zinc-500">
-          {displayStats.providers.toLocaleString()} providers scored
-          {" · "}
-          {formatDollars(displayStats.flagged)} flagged
-          {" · "}
-          {displayStats.tips.toLocaleString()} tips submitted
+          placeholder
         </p>
       )}
 
