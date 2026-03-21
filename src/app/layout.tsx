@@ -17,6 +17,15 @@ export const metadata: Metadata = {
   title: "Fraudit — Follow the Money",
   description:
     "Real-time fraud risk scores built on public government data. Search any provider, address, or zip code.",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Fraudit",
+  },
+  other: {
+    "mobile-web-app-capable": "yes",
+  },
 };
 
 export default function RootLayout({
@@ -30,23 +39,25 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <nav className="border-b border-white/10 px-6 py-4">
+        <meta name="theme-color" content="#ef4444" />
+        <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+        <nav className="border-b border-white/10 px-4 py-3 sm:px-6 sm:py-4">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
             <Link href="/" className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-accent">Fraudit</span>
+              <span className="text-xl font-bold text-accent sm:text-2xl">Fraudit</span>
               <span className="hidden text-sm text-zinc-500 sm:inline">
                 Follow the money
               </span>
             </Link>
             <div className="flex items-center gap-1 text-sm">
-              <Link href="/map" className="rounded-lg px-3 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white">
+              <Link href="/map" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
                 Map
               </Link>
-              <Link href="/states" className="rounded-lg px-3 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white">
+              <Link href="/states" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
                 States
               </Link>
-              <Link href="/contact" className="rounded-lg px-3 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white">
-                Submit a Tip
+              <Link href="/contact" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
+                Tip
               </Link>
             </div>
           </div>
