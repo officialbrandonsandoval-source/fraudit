@@ -101,7 +101,7 @@ def deduplicate_by_npi(records: list, default_state: str) -> dict:
 
 
 def upsert_to_supabase(providers: dict, client) -> int:
-    """Upsert providers into Supabase Provider table in batches of 500."""
+    """Upsert providers into Supabase Provider table in batches of 200."""
     import uuid
     rows = []
     for npi, p in providers.items():
@@ -118,11 +118,21 @@ def upsert_to_supabase(providers: dict, client) -> int:
             "anomalies": [],
         })
 
-    batch_size = 500
+    batch_size = 200
     total = len(rows)
     for i in range(0, total, batch_size):
         batch = rows[i:i + batch_size]
-        client.table("Provider").upsert(batch, on_conflict="id").execute()
+        retries = 3
+        for attempt in range(retries):
+            try:
+                client.table("Provider").upsert(batch, on_conflict="id").execute()
+                break
+            except Exception as e:
+                if attempt < retries - 1:
+                    print(f"    ⚠ Batch error (attempt {attempt+1}): {e} — retrying...")
+                    time.sleep(3)
+                else:
+                    print(f"    ✗ Batch failed after {retries} attempts: {e}")
 
     return total
 
@@ -140,13 +150,38 @@ def main():
     print("=" * 60)
     print()
 
+    # Check which states are already ingested
+    existing = client.table("Provider").select("state").execute()
+    done_states = set(r["state"] for r in (existing.data or []))
+    print(f"Already ingested: {sorted(done_states)}")
+    print()
+
     grand_total_records = 0
     grand_total_providers = 0
 
     for i, state in enumerate(ALL_STATES, 1):
+        if state in done_states:
+            print(f"[{i:02d}/{len(ALL_STATES)}] {state} — SKIPPED (already ingested)")
+            continue
+
         print(f"[{i:02d}/{len(ALL_STATES)}] {state} — fetching...", end="", flush=True)
 
-        records = fetch_state(state)
+        retries = 3
+        for attempt in range(retries):
+            try:
+                records = fetch_state(state)
+                break
+            except Exception as e:
+                if attempt < retries - 1:
+                    print(f"\n    ⚠ Fetch error (attempt {attempt+1}): {e} — retrying in 10s...")
+                    time.sleep(10)
+                else:
+                    print(f"\n    ✗ Skipping {state} after {retries} failed attempts: {e}")
+                    records = []
+
+        if not records:
+            continue
+
         providers = deduplicate_by_npi(records, state)
         count = upsert_to_supabase(providers, client)
 
@@ -155,6 +190,7 @@ def main():
 
         total_paid = sum(p["totalPaid"] for p in providers.values())
         print(f" {count} providers | ${total_paid:,.0f} total")
+        time.sleep(1)  # brief pause between states
 
     print()
     print(f"Ingestion complete: {grand_total_providers:,} unique providers across all states")

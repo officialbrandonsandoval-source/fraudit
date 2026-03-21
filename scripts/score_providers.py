@@ -89,23 +89,31 @@ def run_scoring(supabase_url=None, supabase_key=None):
             "anomalies": anomalies,
         })
 
-    # Batch upsert with retry on connection errors
+    # Batch update via RPC — use update().eq("id") per batch to avoid null constraint
     import time
-    batch_size = 200
+    batch_size = 100
     total = len(updates)
     for i in range(0, total, batch_size):
         batch = updates[i:i + batch_size]
+        ids = [r["id"] for r in batch]
+        # Build a lookup for this batch
+        score_map = {r["id"]: r for r in batch}
         for attempt in range(3):
             try:
-                client.table("Provider").upsert(batch, on_conflict="id").execute()
+                for row in batch:
+                    client.table("Provider").update({
+                        "riskScore": row["riskScore"],
+                        "anomalies": row["anomalies"],
+                    }).eq("id", row["id"]).execute()
                 break
             except Exception as e:
                 if attempt < 2:
-                    time.sleep(2)
+                    time.sleep(3)
                     client = create_client(supabase_url, supabase_key)
                 else:
                     print(f"  Failed batch {i // batch_size + 1}: {e}")
-        print(f"  Scored batch {i // batch_size + 1} ({min(i + batch_size, total)}/{total})")
+        if (i // batch_size) % 50 == 0:
+            print(f"  Scored {min(i + batch_size, total):,}/{total:,}")
 
     # Summary
     high_risk = sum(1 for u in updates if u["riskScore"] >= 60)
