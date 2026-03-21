@@ -1,5 +1,6 @@
 import { PrismaClient } from "@/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import pg from "pg";
 
 declare global {
   // eslint-disable-next-line no-var
@@ -7,9 +8,15 @@ declare global {
 }
 
 function createClient() {
-  // Use transaction pooler URL for serverless (port 6543)
   const url = process.env.DATABASE_URL_POOLER || process.env.DATABASE_URL!;
-  const adapter = new PrismaPg({ connectionString: url });
+  const pool = new pg.Pool({
+    connectionString: url,
+    max: 5,
+    idleTimeoutMillis: 30_000,
+    connectionTimeoutMillis: 10_000,
+    ssl: { rejectUnauthorized: false },
+  });
+  const adapter = new PrismaPg(pool);
   return new PrismaClient({ adapter });
 }
 
