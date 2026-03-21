@@ -14,6 +14,69 @@ interface Provider {
   anomalies: string[];
 }
 
+// Full state name → abbreviation (mirrored on server for SSR)
+const STATE_ABBR: Record<string, string> = {
+  "alabama": "AL", "alaska": "AK", "arizona": "AZ", "arkansas": "AR",
+  "california": "CA", "colorado": "CO", "connecticut": "CT", "delaware": "DE",
+  "florida": "FL", "georgia": "GA", "hawaii": "HI", "idaho": "ID",
+  "illinois": "IL", "indiana": "IN", "iowa": "IA", "kansas": "KS",
+  "kentucky": "KY", "louisiana": "LA", "maine": "ME", "maryland": "MD",
+  "massachusetts": "MA", "michigan": "MI", "minnesota": "MN", "mississippi": "MS",
+  "missouri": "MO", "montana": "MT", "nebraska": "NE", "nevada": "NV",
+  "new hampshire": "NH", "new jersey": "NJ", "new mexico": "NM", "new york": "NY",
+  "north carolina": "NC", "north dakota": "ND", "ohio": "OH", "oklahoma": "OK",
+  "oregon": "OR", "pennsylvania": "PA", "rhode island": "RI", "south carolina": "SC",
+  "south dakota": "SD", "tennessee": "TN", "texas": "TX", "utah": "UT",
+  "vermont": "VT", "virginia": "VA", "washington": "WA", "west virginia": "WV",
+  "wisconsin": "WI", "wyoming": "WY", "district of columbia": "DC",
+};
+
+const ABBR_STATE: Record<string, string> = Object.fromEntries(
+  Object.entries(STATE_ABBR).map(([name, abbr]) => [abbr.toLowerCase(), name])
+);
+
+interface SearchParts {
+  city?: string;
+  state?: string;
+  general?: string;
+}
+
+function parseQuery(raw: string): SearchParts {
+  const trimmed = raw.trim();
+  const lower = trimmed.toLowerCase();
+  if (STATE_ABBR[lower]) return { state: STATE_ABBR[lower] };
+  if (/^[a-z]{2}$/i.test(trimmed) && ABBR_STATE[lower]) return { state: trimmed.toUpperCase() };
+  for (const [fullName, abbr] of Object.entries(STATE_ABBR)) {
+    const escaped = fullName.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    const pattern = new RegExp(`^(.+?)[,\\s]+${escaped}(?:\\s+\\d{5})?$`, "i");
+    const m = trimmed.match(pattern);
+    if (m) return { city: m[1].trim(), state: abbr };
+  }
+  const cityStateZip = trimmed.match(/^(.+?)[,\s]+([A-Za-z]{2})(?:\s+\d{5})?$/);
+  if (cityStateZip) {
+    const potentialAbbr = cityStateZip[2].toUpperCase();
+    if (ABBR_STATE[potentialAbbr.toLowerCase()]) return { city: cityStateZip[1].trim(), state: potentialAbbr };
+  }
+  if (/^\d{5}(-\d{4})?$/.test(trimmed)) return { general: trimmed };
+  return { general: trimmed };
+}
+
+function describeQuery(parts: SearchParts, raw: string): string {
+  if (parts.city && parts.state) {
+    const stateName = ABBR_STATE[parts.state.toLowerCase()];
+    return `${parts.city}, ${stateName ? capitalize(stateName) : parts.state}`;
+  }
+  if (parts.state && !parts.city) {
+    const stateName = ABBR_STATE[parts.state.toLowerCase()];
+    return stateName ? capitalize(stateName) : parts.state;
+  }
+  return raw;
+}
+
+function capitalize(s: string) {
+  return s.split(" ").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+}
+
 function RiskBadge({ score }: { score: number }) {
   const color =
     score >= 60
@@ -21,7 +84,6 @@ function RiskBadge({ score }: { score: number }) {
       : score >= 30
         ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
         : "bg-green-500/20 text-green-400 border-green-500/30";
-
   return (
     <span className={`rounded-full border px-3 py-1 text-sm font-bold ${color}`}>
       {score}
@@ -29,21 +91,29 @@ function RiskBadge({ score }: { score: number }) {
   );
 }
 
-async function searchProviders(query: string): Promise<Provider[]> {
-  if (!query) return [];
+async function searchProviders(raw: string): Promise<Provider[]> {
+  if (!raw) return [];
+  const parts = parseQuery(raw);
 
-  const { data, error } = await supabase
+  let query = supabase
     .from("Provider")
     .select("*")
-    .or(`name.ilike.%${query}%,address.ilike.%${query}%,city.ilike.%${query}%,zip.ilike.%${query}%,state.ilike.%${query}%`)
     .order("riskScore", { ascending: false })
-    .limit(50);
+    .limit(100);
 
-  if (error) {
-    console.error("Search error:", error);
-    return [];
+  if (parts.city && parts.state) {
+    query = query.ilike("city", `%${parts.city}%`).eq("state", parts.state);
+  } else if (parts.state) {
+    query = query.eq("state", parts.state);
+  } else {
+    const g = parts.general || raw;
+    query = query.or(
+      `name.ilike.%${g}%,address.ilike.%${g}%,city.ilike.%${g}%,zip.ilike.%${g}%,state.ilike.%${g}%`
+    );
   }
 
+  const { data, error } = await query;
+  if (error) { console.error("Search error:", error); return []; }
   return data || [];
 }
 
@@ -54,32 +124,69 @@ export default async function SearchPage({
 }) {
   const { q } = await searchParams;
   const query = q || "";
+  const parts = parseQuery(query);
+  const displayLabel = describeQuery(parts, query);
   const providers = await searchProviders(query);
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-10">
-      <h2 className="mb-1 text-2xl font-bold">
-        Results for &ldquo;{query}&rdquo;
-      </h2>
-      <p className="mb-8 text-sm text-zinc-500">
-        {providers.length} provider{providers.length !== 1 && "s"} found
-      </p>
+      {/* Back + search form inline */}
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <Link href="/" className="mb-2 inline-block text-sm text-zinc-500 hover:text-zinc-300 transition">
+            ← Back to Fraudit
+          </Link>
+          <h2 className="text-2xl font-bold">
+            {displayLabel}
+          </h2>
+          <p className="mt-1 text-sm text-zinc-500">
+            {providers.length} provider{providers.length !== 1 && "s"} found
+            {parts.state && !parts.city && (
+              <span className="ml-1 text-zinc-600">· Showing all providers in {parts.state}</span>
+            )}
+            {parts.city && parts.state && (
+              <span className="ml-1 text-zinc-600">· Filtered by city + state</span>
+            )}
+          </p>
+        </div>
+      </div>
+
+      {/* Quick re-search */}
+      <form action="/search" method="GET" className="mb-8">
+        <div className="relative">
+          <input
+            type="text"
+            name="q"
+            defaultValue={query}
+            placeholder="Search again..."
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-base text-white placeholder-zinc-600 outline-none transition focus:border-accent focus:ring-1 focus:ring-accent"
+          />
+          <button
+            type="submit"
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600"
+          >
+            Search
+          </button>
+        </div>
+      </form>
 
       {providers.length === 0 ? (
-        <p className="text-zinc-400">
-          No providers matched your search. Try a different name, address, or
-          zip code.
-        </p>
+        <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-12 text-center">
+          <p className="text-zinc-400 mb-2">No providers matched &ldquo;{query}&rdquo;</p>
+          <p className="text-zinc-600 text-sm">
+            Try a city name, state abbreviation, zip code, or provider name.
+          </p>
+        </div>
       ) : (
         <div className="space-y-4">
           {providers.map((p) => (
             <div
               key={p.id}
-              className="rounded-xl border border-white/10 bg-white/5 p-6"
+              className="rounded-xl border border-white/10 bg-white/5 p-6 hover:border-white/20 transition"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
-                  <div className="mb-1 flex items-center gap-3">
+                  <div className="mb-1 flex items-center gap-3 flex-wrap">
                     <h3 className="text-lg font-semibold">{p.name}</h3>
                     <RiskBadge score={p.riskScore} />
                   </div>
@@ -120,7 +227,7 @@ export default async function SearchPage({
                   href={`/provider/${p.id}`}
                   className="shrink-0 rounded-lg border border-white/10 px-4 py-2 text-sm font-medium transition hover:bg-white/5"
                 >
-                  View Full Report
+                  View Report →
                 </Link>
               </div>
             </div>
