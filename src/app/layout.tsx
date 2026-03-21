@@ -38,6 +38,17 @@ export default function RootLayout({
                 Follow the money
               </span>
             </Link>
+            <div className="flex items-center gap-1 text-sm">
+              <Link href="/map" className="rounded-lg px-3 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white">
+                Map
+              </Link>
+              <Link href="/states" className="rounded-lg px-3 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white">
+                States
+              </Link>
+              <Link href="/contact" className="rounded-lg px-3 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white">
+                Submit a Tip
+              </Link>
+            </div>
           </div>
         </nav>
         <main className="flex-1">{children}</main>

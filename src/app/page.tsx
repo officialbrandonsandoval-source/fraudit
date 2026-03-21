@@ -57,6 +57,13 @@ function buildSearchQuery(raw: string): string {
   return trimmed;
 }
 
+function formatDollars(amount: number): string {
+  if (amount >= 1_000_000_000) return `$${(amount / 1_000_000_000).toFixed(1)}B`;
+  if (amount >= 1_000_000) return `$${(amount / 1_000_000).toFixed(1)}M`;
+  if (amount >= 1_000) return `$${(amount / 1_000).toFixed(0)}K`;
+  return `$${Math.round(amount)}`;
+}
+
 function RiskBadge({ score }: { score: number }) {
   const color =
     score >= 60
@@ -86,6 +93,8 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [topFlagged, setTopFlagged] = useState<Provider[]>([]);
   const [loading, setLoading] = useState(true);
+  const [stats, setStats] = useState({ totalProviders: 0, totalFlagged: 0, totalTips: 0 });
+  const [displayStats, setDisplayStats] = useState({ providers: 0, flagged: 0, tips: 0 });
 
   useEffect(() => {
     fetch("/api/top50")
@@ -95,7 +104,32 @@ export default function Home() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
+
+    fetch("/api/stats")
+      .then((r) => r.json())
+      .then((data) => setStats(data))
+      .catch(() => {});
   }, []);
+
+  // Count-up animation
+  useEffect(() => {
+    if (!stats.totalProviders) return;
+    const duration = 1200;
+    const steps = duration / 20;
+    let step = 0;
+    const interval = setInterval(() => {
+      step++;
+      const progress = Math.min(step / steps, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      setDisplayStats({
+        providers: Math.round(stats.totalProviders * ease),
+        flagged: Math.round(stats.totalFlagged * ease),
+        tips: Math.round(stats.totalTips * ease),
+      });
+      if (step >= steps) clearInterval(interval);
+    }, 20);
+    return () => clearInterval(interval);
+  }, [stats]);
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault();
@@ -119,6 +153,17 @@ export default function Home() {
           search any provider, address, city, state, or zip code.
         </p>
       </div>
+
+      {/* ── Stats Counter ── */}
+      {displayStats.providers > 0 && (
+        <p className="mb-6 text-center text-sm text-zinc-500">
+          {displayStats.providers.toLocaleString()} providers scored
+          {" · "}
+          {formatDollars(displayStats.flagged)} flagged
+          {" · "}
+          {displayStats.tips.toLocaleString()} tips submitted
+        </p>
+      )}
 
       {/* ── Search Bar ── */}
       <form onSubmit={handleSearch} className="mb-4 w-full">
