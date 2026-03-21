@@ -2,6 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
+import Link from "next/link";
+
+interface BillingEntry {
+  year: number;
+  amount: number;
+}
 
 interface Provider {
   id: string;
@@ -17,6 +23,16 @@ interface Provider {
   licenseDate: string | null;
   ownerId: string | null;
   createdAt: string;
+  npi: string | null;
+  billingHistory: BillingEntry[] | null;
+}
+
+interface RelatedProvider {
+  id: string;
+  name: string;
+  city: string;
+  state: string;
+  riskScore: number;
 }
 
 function RiskBadge({ score }: { score: number }) {
@@ -36,29 +52,96 @@ function RiskBadge({ score }: { score: number }) {
   );
 }
 
-// Placeholder billing chart using simple bars
-function BillingChart() {
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const values = [42, 48, 45, 67, 89, 134, 187, 245, 312, 389, 456, 523];
-  const max = Math.max(...values);
+function formatDollar(amount: number): string {
+  if (amount >= 1_000_000) return `$${(amount / 1_000_000).toFixed(1)}M`;
+  if (amount >= 1_000) return `$${(amount / 1_000).toFixed(0)}K`;
+  return `$${amount.toFixed(0)}`;
+}
+
+function BillingChart({ history }: { history: BillingEntry[] | null }) {
+  if (!history || history.length === 0) {
+    return (
+      <div className="rounded-xl border border-white/10 bg-white/5 p-6">
+        <h3 className="mb-4 text-lg font-semibold">Annual Medicare Billing</h3>
+        <p className="text-sm text-zinc-500">
+          Billing history not available for this provider.
+        </p>
+      </div>
+    );
+  }
+
+  const sorted = [...history].sort((a, b) => a.year - b.year);
+  const max = Math.max(...sorted.map((e) => e.amount));
 
   return (
     <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-      <h3 className="mb-4 text-lg font-semibold">Monthly Billing Trend</h3>
-      <div className="flex items-end gap-2" style={{ height: 160 }}>
-        {months.map((m, i) => (
-          <div key={m} className="flex flex-1 flex-col items-center gap-1">
+      <h3 className="mb-4 text-lg font-semibold">Annual Medicare Billing</h3>
+      <div className="flex items-end gap-3" style={{ height: 180 }}>
+        {sorted.map((entry) => (
+          <div key={entry.year} className="flex flex-1 flex-col items-center gap-1">
+            <span className="text-xs font-medium text-zinc-300">
+              {formatDollar(entry.amount)}
+            </span>
             <div
-              className="w-full rounded-t bg-accent/70 transition-all"
-              style={{ height: `${(values[i] / max) * 140}px` }}
+              className="w-full rounded-t bg-accent/70 transition-all hover:bg-accent"
+              style={{ height: `${(entry.amount / max) * 140}px`, minHeight: 4 }}
             />
-            <span className="text-[10px] text-zinc-500">{m}</span>
+            <span className="text-xs text-zinc-500">{entry.year}</span>
           </div>
         ))}
       </div>
       <p className="mt-3 text-xs text-zinc-500">
-        Mock data — real billing trends will come from CMS payment records
+        Source: CMS Medicare Public Use File
       </p>
+    </div>
+  );
+}
+
+function RelatedEntities({ providerId }: { providerId: string }) {
+  const [related, setRelated] = useState<RelatedProvider[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`/api/provider/${providerId}/related`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setRelated(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [providerId]);
+
+  if (loading) {
+    return (
+      <div className="rounded-xl border border-white/10 bg-white/5 p-6">
+        <h3 className="mb-2 text-lg font-semibold">Related Entities</h3>
+        <p className="text-sm text-zinc-500">Loading...</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="rounded-xl border border-white/10 bg-white/5 p-6">
+      <h3 className="mb-3 text-lg font-semibold">Related Entities</h3>
+      {related.length === 0 ? (
+        <p className="text-sm text-zinc-500">No related entities found.</p>
+      ) : (
+        <ul className="space-y-2">
+          {related.map((r) => (
+            <li key={r.id} className="flex items-center justify-between text-sm">
+              <Link
+                href={`/provider/${r.id}`}
+                className="text-accent hover:underline"
+              >
+                {r.name}
+              </Link>
+              <span className="text-zinc-500">
+                {r.city}, {r.state} — Risk: {r.riskScore}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
@@ -124,6 +207,9 @@ export default function ProviderPage() {
           <p className="mt-1 text-zinc-400">
             {provider.address}, {provider.city}, {provider.state} {provider.zip}
           </p>
+          {provider.npi && (
+            <p className="mt-0.5 text-xs text-zinc-500">NPI: {provider.npi}</p>
+          )}
           <div className="mt-3">
             <RiskBadge score={provider.riskScore} />
           </div>
@@ -194,16 +280,12 @@ export default function ProviderPage() {
 
       {/* Billing chart */}
       <div className="mb-8">
-        <BillingChart />
+        <BillingChart history={provider.billingHistory} />
       </div>
 
-      {/* Related entities placeholder */}
-      <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-        <h3 className="mb-2 text-lg font-semibold">Related Entities</h3>
-        <p className="text-sm text-zinc-500">
-          Same owner or same address connections will appear here once the data
-          pipeline is active.
-        </p>
+      {/* Related entities */}
+      <div className="mb-8">
+        <RelatedEntities providerId={provider.id} />
       </div>
 
       {/* Tip modal */}

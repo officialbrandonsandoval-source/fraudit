@@ -9,7 +9,7 @@ export async function GET(
 
   const { data, error } = await supabase
     .from("Provider")
-    .select("*")
+    .select("id, name, address, city, state, zip, programs, totalPaid, riskScore, anomalies, licenseDate, ownerId, createdAt, npi, billingHistory")
     .eq("id", id)
     .single();
 

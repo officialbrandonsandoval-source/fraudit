@@ -19,8 +19,10 @@ model Provider {
   riskScore   Int
   anomalies   String[]
   licenseDate DateTime?
-  ownerId     String?
-  createdAt   DateTime @default(now())
+  ownerId        String?
+  npi            String?
+  billingHistory Json     @default("[]")
+  createdAt      DateTime @default(now())
 }
 
 model Tip {
