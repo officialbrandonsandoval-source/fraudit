@@ -1,1002 +1,523 @@
 [
   {
-    "name": "SINCERITY HOSPICE SERVICES INC",
-    "address": "1700 E LINCOLN AVE STE 201",
-    "city": "Anaheim",
-    "zip": "92805",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "USA VALLEY HOSPICE INC",
-    "address": "12501 CHANDLER BLVD STE 106",
-    "city": "Valley Village",
-    "zip": "91607",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "NARINAS HOSPICE SERVICES",
-    "address": "14545 FRIAR ST STE 205P",
-    "city": "Van Nuys",
-    "zip": "91411",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "HARMONIA HOSPICE AND PALLIATIVE CARE INC",
-    "address": "6621 VAN NUYS BLVD STE 117",
-    "city": "Van Nuys",
-    "zip": "91405",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "LIFE HOSPICE INC",
-    "address": "5101 E LA PALMA AVE STE 204",
-    "city": "Anaheim",
-    "zip": "92807",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ETERNAL LIFE HOSPICE INC",
-    "address": "30941 AGOURA RD STE 112",
-    "city": "Westlake Village",
-    "zip": "91361",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "HOSPICE OF BEST CHOICE CORP",
-    "address": "539 N GLENOAKS BLVD STE 202",
-    "city": "Burbank",
-    "zip": "91502",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "KIND HEART HOSPICE AND PALLIATIVE CARE INCORPORATED",
-    "address": "160 S OLD SPRINGS RD STE 280",
-    "city": "Anaheim",
-    "zip": "92808",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "CARE COMPANION HOSPICE, INC.",
-    "address": "9778 KATELLA AVE STE 217",
-    "city": "Anaheim",
-    "zip": "92804",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "PRO ANGELS, INC",
-    "address": "401 S MAIN ST STE 103",
-    "city": "Pomona",
-    "zip": "91766",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "APRICUS HOSPICE INC",
-    "address": "19730 VENTURA BLVD STE 17",
-    "city": "Woodland Hills",
-    "zip": "91364",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "OHANA HOSPICE AND PALLIATIVE CARE INC",
-    "address": "5775 E LOS ANGELES AVE STE 212",
-    "city": "Simi Valley",
-    "zip": "93063",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "HEAVENLY HOSPICE CARE CENTER INC",
-    "address": "6308 WOODMAN AVE STE 218",
-    "city": "Van Nuys",
-    "zip": "91401",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "PRESPECTIVE HOSPICE, INC",
-    "address": "2200 S FREMONT AVE UNIT 201",
-    "city": "Alhambra",
-    "zip": "91803",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "FINEST HOSPICE INC",
-    "address": "7200 VINELAND AVE UNIT 210A",
-    "city": "Sun Valley",
-    "zip": "91352",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "AAA HOSPICE CARE & NURSING INC",
-    "address": "229 N CENTRAL AVE STE 507",
-    "city": "Glendale",
-    "zip": "91203",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "KAREMORE HOSPICE, INC.",
-    "address": "505 S VILLA REAL STE 211",
-    "city": "Anaheim",
-    "zip": "92807",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "LENUS CARE LLC",
-    "address": "5060 CALIFORNIA AVE STE 415",
-    "city": "Bakersfield",
-    "zip": "93309",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "COMPASSION HOSPICE CORP",
-    "address": "1010 N CENTRAL AVE STE 307",
-    "city": "Glendale",
-    "zip": "91202",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "VIVO HOSPICE INC",
-    "address": "5535 BALBOA BLVD STE 104",
-    "city": "Encino",
-    "zip": "91316",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "GABRIELLE HOSPICE CARE INC",
-    "address": "238 S ORANGE AVE STE 201",
-    "city": "Brea",
-    "zip": "92821",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "SORS HOSPICE INC",
-    "address": "3200 WILSHIRE BLVD STE 306",
-    "city": "Los Angeles",
-    "zip": "90010",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "STAND BY U HOSPICE CARE INC",
-    "address": "918 MISSION AVE STE 103",
-    "city": "Oceanside",
-    "zip": "92054",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "OC HOSPICE CARE INC",
-    "address": "19626 VENTURA BLVD STE 225",
-    "city": "Tarzana",
-    "zip": "91356",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "PARENTIS HOSPICE AND HEALTH CARE, INC.",
-    "address": "24012 CALLE DE LA PLATA STE 400",
-    "city": "Laguna Hills",
-    "zip": "92653",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "NEXUS HOSPICE OF RIVERSIDE LLC",
-    "address": "1307 W 6TH ST STE 223",
-    "city": "Corona",
-    "zip": "92882",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "SNL HOSPICE INC",
-    "address": "180 E VALLEY BLVD STE 206",
-    "city": "San Gabriel",
-    "zip": "91776",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "CRESCENTA HOSPICE CARE, INC",
-    "address": "2600 FOOTHILL BLVD STE 108",
-    "city": "La Crescenta",
-    "zip": "91214",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "VALIANT HOSPICE CARE INC",
-    "address": "11755 VICTORY BLVD STE 214",
-    "city": "North Hollywood",
-    "zip": "91606",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "N&I HOSPICE INC",
-    "address": "333 S CENTRAL AVE STE 103",
-    "city": "Glendale",
-    "zip": "91204",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "AMERICAN RIVER HOSPICE SERVICES",
-    "address": "1451 RIVER PARK DR STE 241",
-    "city": "Sacramento",
-    "zip": "95815",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ATHENA INC",
-    "address": "7636 N INGRAM AVE STE 105",
-    "city": "Fresno",
-    "zip": "93711",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "KINDNESS HOSPICE CARE INC",
-    "address": "12444 VICTORY BLVD STE 208",
-    "city": "North Hollywood",
-    "zip": "91606",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "INFINITE LIFE INC",
-    "address": "5958 VINELAND AVE STE L2",
-    "city": "North Hollywood",
-    "zip": "91601",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ACESO HOSPICE INC",
-    "address": "6420 COLDWATER CANYON AVE STE 199",
-    "city": "North Hollywood",
-    "zip": "91606",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "TRILOGY HOSPICE INC",
-    "address": "14328 VICTORY BLVD STE K",
-    "city": "Van Nuys",
-    "zip": "91401",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "SAUNDERS HOSPICE LLC",
-    "address": "9017 RESEDA BLVD STE 209",
-    "city": "Northridge",
-    "zip": "91324",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ANGEL LOVE HOSPICE SERVICES, INC.",
-    "address": "100 WILLOW PLZ STE 100",
-    "city": "Visalia",
-    "zip": "93291",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "AEGIS HOSPICE CARE",
-    "address": "4959 PALO VERDE ST STE 206C-4",
-    "city": "Montclair",
-    "zip": "91763",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "CITADEL & IVAN LLC",
-    "address": "5100 N 6TH ST STE 150",
-    "city": "Fresno",
-    "zip": "93710",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "BENIGN CARE HOSPICE INC",
-    "address": "356 E OLIVE AVE STE 114",
-    "city": "Burbank",
-    "zip": "91502",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "COMPLETE CARE HOSPICE,INC",
-    "address": "9100 WILSHIRE BLVD STE 540E",
-    "city": "Beverly Hills",
-    "zip": "90212",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "WORLD HEALTH HOSPICE, INC",
-    "address": "15720 VENTURA BLVD STE 299",
+    "name": "Yousef Mehrabi",
+    "address": "16030 Ventura Blvd Ste 140",
     "city": "Encino",
     "zip": "91436",
-    "riskScore": 84,
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally"
     ]
   },
   {
-    "name": "HEART OF ANGEL HOSPICE & PALLIATIVE INC",
-    "address": "405 S SAN GABRIEL BLVD STE A",
-    "city": "San Gabriel",
-    "zip": "91776",
-    "riskScore": 84,
+    "name": "Mohammad Kharazmi",
+    "address": "4500 Brockton Ave Ste 305",
+    "city": "Riverside",
+    "zip": "92501",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Extreme payment volume — top 1% nationally"
     ]
   },
   {
-    "name": "STANDARD CARE HOSPICE INC",
-    "address": "2323 W LINCOLN AVE STE 207B",
-    "city": "Anaheim",
-    "zip": "92801",
-    "riskScore": 84,
+    "name": "James Morrissey",
+    "address": "1617 N California St Suite 1d",
+    "city": "Stockton",
+    "zip": "95204",
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "Douglas Mcgraw",
+    "address": "320 H St Ste 4",
+    "city": "Marysville",
+    "zip": "95901",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
     ]
   },
   {
-    "name": "OAKLAND HOSPICE INC",
-    "address": "2366 GOLD MEADOW WAY STE 100",
-    "city": "Gold River",
-    "zip": "95670",
-    "riskScore": 84,
+    "name": "Todd Miller",
+    "address": "1501 Superior Ave Ste 301",
+    "city": "Newport Beach",
+    "zip": "92663",
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "Hazmer Cassim",
+    "address": "39000 Bob Hope Dr, Hirschberg Blg Ste 310",
+    "city": "Rancho Mirage",
+    "zip": "92270",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally"
     ]
   },
   {
-    "name": "G AND G HOSPICE CARE INC",
-    "address": "10523 BURBANK BLVD STE 119",
-    "city": "North Hollywood",
-    "zip": "91601",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
+    "name": "Longs Drug Stores California Llc",
+    "address": "No 6 The Crossroads",
+    "city": "Carmel",
+    "zip": "93923",
+    "riskScore": 99,
+    "anomalies": []
   },
   {
-    "name": "SMART CHOICE HOSPICE INC",
-    "address": "20945 DEVONSHIRE ST STE 103",
-    "city": "Chatsworth",
-    "zip": "91311",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
+    "name": "Longs Drug Stores California Llc",
+    "address": "42520 Bob Hope Dr",
+    "city": "Rancho Mirage",
+    "zip": "92270",
+    "riskScore": 99,
+    "anomalies": []
   },
   {
-    "name": "PEACEFUL MIND HOSPICE CARE INC",
-    "address": "725 S GLENDALE AVE STE H",
-    "city": "Glendale",
-    "zip": "91205",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "CARE VIEW HOSPICE CARE",
-    "address": "12444 VICTORY BLVD STE 325",
-    "city": "North Hollywood",
-    "zip": "91606",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ADJUSTABLE CARE LIFE INC",
-    "address": "2461 E ORANGETHORPE AVE STE 221",
-    "city": "Fullerton",
-    "zip": "92831",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "SHARE THE CARE HOSPICE, INC.",
-    "address": "14545 FRIAR ST STE 180",
-    "city": "Van Nuys",
-    "zip": "91411",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "OLIVE BRANCH HOSPICE INC.",
-    "address": "11428 ARTESIA BLVD STE 27",
-    "city": "Artesia",
-    "zip": "90701",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "STATEWIDE HOSPICE, INC.",
-    "address": "1110 SONORA AVE STE 103",
-    "city": "Glendale",
-    "zip": "91201",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "HUNTINGTON HOSPICE CARE INC",
-    "address": "12750 CENTER COURT DR S STE 660",
-    "city": "Cerritos",
-    "zip": "90703",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "INFINITE HOSPICE",
-    "address": "5121 VAN NUYS BLVD STE 202",
-    "city": "Sherman Oaks",
-    "zip": "91403",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "AMARI HOSPICE CARE INC",
-    "address": "6720 FAIR OAKS BLVD STE 100",
-    "city": "Carmichael",
-    "zip": "95608",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ETS HOSPICE CARE, INC",
-    "address": "6410 VAN NUYS BLVD STE F202",
-    "city": "Van Nuys",
-    "zip": "91401",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "MOONLIGHT HOSPICE CARE, INC.",
-    "address": "348 E OLIVE AVE STE J",
-    "city": "Burbank",
-    "zip": "91502",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "BLUE CROSS HOSPICE",
-    "address": "4605 LANKERSHIM BLVD STE 305",
-    "city": "North Hollywood",
-    "zip": "91602",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "TOWN CENTER HOSPICE CARE",
-    "address": "11260 WILBUR AVE STE 306",
-    "city": "Porter Ranch",
-    "zip": "91326",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "LA CARE HOSPICE INC",
-    "address": "211 W ALAMEDA AVE STE 101",
-    "city": "Burbank",
-    "zip": "91502",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "24-7 TEAM CARE INC",
-    "address": "4225 VALLEY FAIR ST STE 205",
-    "city": "Simi Valley",
-    "zip": "93063",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "COMMUNICARE HOSPICE INC",
-    "address": "936 E GREEN ST STE 108",
-    "city": "Pasadena",
-    "zip": "91106",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "GLORIA HOSPICE INC",
-    "address": "4311 WILSHIRE BLVD STE 302",
-    "city": "Los Angeles",
-    "zip": "90010",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ATLANTIC CARE HOSPICE, INC.",
-    "address": "12444 VICTORY BLVD STE 303",
-    "city": "North Hollywood",
-    "zip": "91606",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "DIRECT HOSPICE INC",
-    "address": "9003 RESEDA BLVD STE 103",
-    "city": "Northridge",
-    "zip": "91324",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "LIFE TO LIFE HOSPICE CARE INC",
-    "address": "905 S LAKE ST STE 203",
-    "city": "Burbank",
-    "zip": "91502",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "HILLCREST HOSPICE INC",
-    "address": "2985 E HILLCREST DR STE 203",
-    "city": "Westlake Village",
-    "zip": "91362",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "OPTIMAL CARE HOSPICE INC",
-    "address": "18340 VENTURA BLVD STE 225",
-    "city": "Tarzana",
-    "zip": "91356",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ARIAS HOSPICE CARE INC",
-    "address": "2250 DOUGLAS BLVD STE 135",
-    "city": "Roseville",
-    "zip": "95661",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "DEDICATION HOSPICE CARE INC.",
-    "address": "516 PENNSFIELD PL STE 206",
+    "name": "Daniel Ebroon",
+    "address": "351 Rolling Oaks Dr Ste 102",
     "city": "Thousand Oaks",
-    "zip": "91360",
-    "riskScore": 84,
+    "zip": "91361",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally"
     ]
   },
   {
-    "name": "PACIFIC PALLIATIVE SERVICES INC",
-    "address": "10523 BURBANK BLVD STE 107",
-    "city": "North Hollywood",
-    "zip": "91601",
-    "riskScore": 84,
+    "name": "David Gilbert",
+    "address": "350 N Wiget Ln Ste 200",
+    "city": "Walnut Creek",
+    "zip": "94598",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally"
     ]
   },
   {
-    "name": "CALM CARE HOSPICE INC",
-    "address": "21405 DEVONSHIRE ST STE 223",
-    "city": "Chatsworth",
-    "zip": "91311",
-    "riskScore": 84,
+    "name": "Addiction Research And Treatment, Inc",
+    "address": "433 Turk St",
+    "city": "San Francisco",
+    "zip": "94102",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally"
     ]
   },
   {
-    "name": "BELLEROSE HOSPICE CARE INC",
-    "address": "26893 BOUQUET CANYON RD STE L",
-    "city": "Santa Clarita",
-    "zip": "91350",
-    "riskScore": 84,
+    "name": "Babak Zamiri",
+    "address": "6180 Brockton Ave Ste 204",
+    "city": "Riverside",
+    "zip": "92506",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
     ]
   },
   {
-    "name": "PRO HOSPICE CARE INC",
-    "address": "3857 FOOTHILL BLVD STE 22",
-    "city": "Glendale",
-    "zip": "91214",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ANTHEM HOSPICE CARE INC",
-    "address": "20121 VENTURA BLVD STE 303",
-    "city": "Woodland Hills",
-    "zip": "91364",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ALL STATE HOSPICE CARE INC",
-    "address": "45 W EASY ST STE 21",
-    "city": "Simi Valley",
-    "zip": "93065",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "KEEPERS OF HOPE",
-    "address": "4605 LANKERSHIM BLVD STE 217",
-    "city": "North Hollywood",
-    "zip": "91602",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ADONIS HOSPICE, INC.",
-    "address": "18401 BURBANK BLVD STE 224",
-    "city": "Tarzana",
-    "zip": "91356",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "GALENUS HOSPICE CARE INC",
-    "address": "159 E HUNTINGTON DR STE 6",
-    "city": "Arcadia",
-    "zip": "91006",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "HOLISTIC HOSPICE AND PALLIATIVE CARE INC",
-    "address": "105 W ALAMEDA AVE STE 218",
-    "city": "Burbank",
-    "zip": "91502",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "MAGIC TOUCH HOSPICE",
-    "address": "20710 MANHATTAN PL STE 132",
-    "city": "Torrance",
-    "zip": "90501",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "AVRA HOSPICE INC",
-    "address": "9660 FLAIR DR STE 225",
-    "city": "El Monte",
-    "zip": "91731",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "EXCELLENT PALLIATIVE AND HOSPICE CARE INC",
-    "address": "10600 SEPULVEDA BLVD STE 106",
+    "name": "Pascal Dabel",
+    "address": "11550 Indian Hills Rd Ste 371",
     "city": "Mission Hills",
     "zip": "91345",
-    "riskScore": 84,
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above zip-code peers"
     ]
   },
   {
-    "name": "IVS HOSPICE, INC.",
-    "address": "7034 VAN NUYS BLVD STE F",
+    "name": "Ambuserve, Inc.",
+    "address": "15105 S Broadway St",
+    "city": "Gardena",
+    "zip": "90248",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
+    ]
+  },
+  {
+    "name": "Arash Milani",
+    "address": "12740 Hesperia Rd Ste B",
+    "city": "Victorville",
+    "zip": "92395",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
+    ]
+  },
+  {
+    "name": "Javaid Shad",
+    "address": "3923 Waring Rd Ste A",
+    "city": "Oceanside",
+    "zip": "92056",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers"
+    ]
+  },
+  {
+    "name": "Artin Minaeian",
+    "address": "1451 E Chevy Chase Dr Ste 201",
+    "city": "Glendale",
+    "zip": "91206",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Eyelliance Vision Partners Asc Llc",
+    "address": "800 Trancas St",
+    "city": "Napa",
+    "zip": "94558",
+    "riskScore": 99,
+    "anomalies": [
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Garfield Beach Cvs Llc",
+    "address": "13171 Mindanao Way",
+    "city": "Marina Del Rey",
+    "zip": "90292",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers"
+    ]
+  },
+  {
+    "name": "Lakewood Eye Physicians And Surgeons Inc A Medical Group",
+    "address": "3300 E South St",
+    "city": "Long Beach",
+    "zip": "90805",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Rupdev Khosa",
+    "address": "550 W Duarte Rd Ste 4",
+    "city": "Arcadia",
+    "zip": "91007",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Daylight Rcfe Inc",
+    "address": "1301 N San Fernando Blvd",
+    "city": "Burbank",
+    "zip": "91504",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Primex Clinical Laboratories Inc.",
+    "address": "16742 Stagg St",
     "city": "Van Nuys",
-    "zip": "91405",
-    "riskScore": 84,
+    "zip": "91406",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
     ]
   },
   {
-    "name": "JMJ HOSPICE CARE INC",
-    "address": "8640 BRENTWOOD BLVD STE D1",
-    "city": "Brentwood",
-    "zip": "94513",
-    "riskScore": 84,
+    "name": "Batyrjan Bulibek",
+    "address": "320 Santa Fe Dr Ste 204",
+    "city": "Encinitas",
+    "zip": "92024",
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "Mvml, Inc.",
+    "address": "945 Saint John Pl",
+    "city": "Hemet",
+    "zip": "92543",
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "Kavitha Raj",
+    "address": "5725 W Las Positas Blvd Ste 100a",
+    "city": "Pleasanton",
+    "zip": "94588",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
     ]
   },
   {
-    "name": "ACUTE HOSPICE CARE, INC",
-    "address": "8138 FOOTHILL BLVD STE 320",
-    "city": "Sunland",
-    "zip": "91040",
-    "riskScore": 84,
+    "name": "Nighat Sarwar",
+    "address": "7407 N Cedar Ave Ste 103",
+    "city": "Fresno",
+    "zip": "93720",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
     ]
   },
   {
-    "name": "NEXUS HOSPICE CARE INC",
-    "address": "41870 KALMIA ST STE 140",
+    "name": "Biotheranostics, Inc.",
+    "address": "6333 Sequence Drive",
+    "city": "San Diego",
+    "zip": "92121",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
+    ]
+  },
+  {
+    "name": "Western Pacific Med-Corp",
+    "address": "955 E Thompson Blvd",
+    "city": "Ventura",
+    "zip": "93001",
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "K & T Diagnostic, Inc.",
+    "address": "7120 Hayvenhurst Ave",
+    "city": "Van Nuys",
+    "zip": "91406",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Privilege Dx Medical Laboratories, Inc.",
+    "address": "10133 Riverside Dr",
+    "city": "Toluca Lake",
+    "zip": "91602",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
+    ]
+  },
+  {
+    "name": "Temecula Valley Day Surgery & Pain Therapy Center, Inc.",
+    "address": "25495 Medical Center Dr",
     "city": "Murrieta",
     "zip": "92562",
-    "riskScore": 84,
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "Bedro Jin",
+    "address": "601 E Micheltorena St Unit 38",
+    "city": "Santa Barbara",
+    "zip": "93103",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Extreme payment volume — top 1% nationally"
     ]
   },
   {
-    "name": "NORTHPOINT HOSPICE LLC",
-    "address": "11838 BERNARDO PLAZA CT STE 260C",
-    "city": "San Diego",
-    "zip": "92128",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ACTIVATE CARE HOSPICE INC",
-    "address": "2904 THERESA DR STE 104B",
-    "city": "Newbury Park",
-    "zip": "91320",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "GOOD LIFE PALLIATIVE CARE",
-    "address": "20953 DEVONSHIRE ST STE 8A",
-    "city": "Chatsworth",
-    "zip": "91311",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "ANGELS PROTECTION HOSPICE INC",
-    "address": "1616 VICTORY BLVD STE 103",
-    "city": "Glendale",
-    "zip": "91201",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "HEALTHFLEX HOSPICE",
-    "address": "7677 OAKPORT ST STE 920",
-    "city": "Oakland",
-    "zip": "94621",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "SIMPLE CHOICE HOSPICE INC",
-    "address": "15720 VENTURA BLVD STE 106",
-    "city": "Encino",
-    "zip": "91436",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "GOLDEN SEASONS HOSPICE INC",
-    "address": "2550 N HOLLYWOOD WAY STE 502",
-    "city": "Burbank",
-    "zip": "91505",
-    "riskScore": 84,
-    "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
-    ]
-  },
-  {
-    "name": "UNITED HEALTH HOSPICE INC",
-    "address": "2525 COLORADO BLVD STE E",
+    "name": "Ashraf Elsayegh",
+    "address": "2080 Century Park E Ste 507",
     "city": "Los Angeles",
-    "zip": "90041",
-    "riskScore": 84,
+    "zip": "90067",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 927% above state median for Medicare",
+      "High provider concentration in zip 90067",
+      "Commercial provider at residential/suite address"
     ]
   },
   {
-    "name": "ALL FAMILY HOSPICE INC",
-    "address": "103 W ALAMEDA AVE STE 130",
+    "name": "Howard Levy",
+    "address": "57370 29 Palms Hwy Ste 203",
+    "city": "Yucca Valley",
+    "zip": "92284",
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "Pascal Dabel",
+    "address": "11550 Indian Hills Rd Ste 371",
+    "city": "Mission Hills",
+    "zip": "91345",
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "Beverly Hills Endosurgical Center Llc",
+    "address": "150 N Robertson Blvd Ste 110",
+    "city": "Beverly Hills",
+    "zip": "90211",
+    "riskScore": 99,
+    "anomalies": [
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Glade Roper",
+    "address": "1700 S Court St Ste A",
+    "city": "Visalia",
+    "zip": "93277",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Glade Roper",
+    "address": "1700 S Court St Ste A",
+    "city": "Visalia",
+    "zip": "93277",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Daylight Rcfe Inc",
+    "address": "1301 N San Fernando Blvd",
     "city": "Burbank",
-    "zip": "91502",
-    "riskScore": 84,
+    "zip": "91504",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally"
     ]
   },
   {
-    "name": "PEACE & COMFORT HOSPICE AND PALLIATIVE CARE INC",
-    "address": "16200 VENTURA BLVD STE 310A",
-    "city": "Encino",
-    "zip": "91436",
-    "riskScore": 84,
+    "name": "Thai Phou",
+    "address": "11190 Warner Ave Ste 306",
+    "city": "Fountain Valley",
+    "zip": "92708",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
     ]
   },
   {
-    "name": "MEDALLION HOSPICE CARE INC",
-    "address": "6309 VAN NUYS BLVD STE 204",
-    "city": "Van Nuys",
-    "zip": "91401",
-    "riskScore": 84,
+    "name": "Sutter Amador Surgery Center Llc",
+    "address": "223 Clinton Rd",
+    "city": "Jackson",
+    "zip": "95642",
+    "riskScore": 99,
     "anomalies": [
-      "Enrolled hospice with $0 Medicare billing \u2014 possible ghost operation"
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Ruwanthi Campano",
+    "address": "41301 12th St W Ste A",
+    "city": "Palmdale",
+    "zip": "93551",
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "Anuj Chawla",
+    "address": "9500 Stockdale Hwy Ste 108",
+    "city": "Bakersfield",
+    "zip": "93311",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Thousand Oaks Surgery Center, Llc",
+    "address": "1120 Newbury Rd Ste 100",
+    "city": "Thousand Oaks",
+    "zip": "91320",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
+    ]
+  },
+  {
+    "name": "Aegis Treatment Centers, Llc",
+    "address": "115 E Fesler St",
+    "city": "Santa Maria",
+    "zip": "93454",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally"
+    ]
+  },
+  {
+    "name": "Shahin Pourrabbani",
+    "address": "3680 E Imperial Hwy Ste 502",
+    "city": "Lynwood",
+    "zip": "90262",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
+    ]
+  },
+  {
+    "name": "Ryan Ponec",
+    "address": "18133 Ventura Blvd Ste 300",
+    "city": "Tarzana",
+    "zip": "91356",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above zip-code peers",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
+    ]
+  },
+  {
+    "name": "Dustin Lee",
+    "address": "3500 Lomita Blvd Ste M100",
+    "city": "Torrance",
+    "zip": "90505",
+    "riskScore": 99,
+    "anomalies": []
+  },
+  {
+    "name": "David Josephson",
+    "address": "8635 W 3rd St Ste 1",
+    "city": "Los Angeles",
+    "zip": "90048",
+    "riskScore": 99,
+    "anomalies": [
+      "Billing 300%+ above national average",
+      "Extreme payment volume — top 1% nationally",
+      "Billing exceeds $1M — statistical outlier"
     ]
   }
 ]
