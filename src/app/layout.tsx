@@ -56,6 +56,9 @@ export default function RootLayout({
               <Link href="/states" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
                 States
               </Link>
+              <Link href="/reports" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
+                Reports
+              </Link>
               <Link href="/contact" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
                 Tip
               </Link>

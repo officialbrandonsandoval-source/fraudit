@@ -31,3 +31,12 @@ model Tip {
   content    String
   createdAt  DateTime @default(now())
 }
+
+model Contact {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  affiliation String?
+  message     String
+  createdAt   DateTime @default(now())
+}
