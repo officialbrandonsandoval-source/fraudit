@@ -210,8 +210,13 @@ export default function ProviderPage() {
           {provider.npi && (
             <p className="mt-0.5 text-xs text-zinc-500">NPI: {provider.npi}</p>
           )}
-          <div className="mt-3">
+          <div className="mt-3 flex items-center gap-3">
             <RiskBadge score={provider.riskScore} />
+            {provider.anomalies.some((a) => a.toLowerCase().includes("ghost operation")) && (
+              <span className="inline-flex items-center gap-1 rounded-full border border-red-500/40 bg-red-500/20 px-3 py-1.5 text-sm font-bold text-red-400">
+                ⚠️ Ghost Operation Risk
+              </span>
+            )}
           </div>
         </div>
         <div className="flex gap-2">

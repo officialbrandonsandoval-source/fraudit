@@ -102,9 +102,15 @@ export async function GET(request: NextRequest) {
   } else {
     // General: search name, address, city, zip, state all at once
     const g = parts.general || raw;
-    query = query.or(
-      `name.ilike.%${g}%,address.ilike.%${g}%,city.ilike.%${g}%,zip.ilike.%${g}%,state.ilike.%${g}%`
-    );
+
+    // Special handling for "hospice" keyword — filter by program
+    if (g.toLowerCase().includes("hospice")) {
+      query = query.contains("programs", ["Medicare Hospice"]);
+    } else {
+      query = query.or(
+        `name.ilike.%${g}%,address.ilike.%${g}%,city.ilike.%${g}%,zip.ilike.%${g}%,state.ilike.%${g}%`
+      );
+    }
   }
 
   const { data, error } = await query;

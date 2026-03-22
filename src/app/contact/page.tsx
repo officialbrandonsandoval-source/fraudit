@@ -49,6 +49,16 @@ export default function ContactPage() {
         </p>
       </div>
 
+      <div className="mb-10 rounded-xl border border-white/10 bg-white/5 p-6">
+        <h3 className="mb-2 text-sm font-semibold text-zinc-300">Reports</h3>
+        <a
+          href="/reports/ca-ghost-hospices"
+          className="text-sm text-accent hover:underline"
+        >
+          View CA Ghost Hospice Report →
+        </a>
+      </div>
+
       {submitted ? (
         <div className="rounded-xl border border-green-500/20 bg-green-500/5 p-8 text-center">
           <div className="mb-2 text-lg font-semibold text-green-400">Message sent</div>
