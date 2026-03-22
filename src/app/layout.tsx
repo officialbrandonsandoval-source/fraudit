@@ -67,8 +67,13 @@ export default function RootLayout({
         </nav>
         <main className="flex-1">{children}</main>
         <footer className="border-t border-white/10 px-6 py-6 text-center text-xs text-zinc-600">
-          Built on public data. Statistical flags only — not proof of
-          wrongdoing.
+          <div className="mb-2">
+            Built on public data. Statistical flags only — not proof of
+            wrongdoing.
+          </div>
+          <Link href="/improve" className="text-zinc-500 transition hover:text-accent">
+            Suggest Improvement
+          </Link>
         </footer>
       </body>
     </html>

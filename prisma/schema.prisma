@@ -40,3 +40,15 @@ model Contact {
   message     String
   createdAt   DateTime @default(now())
 }
+
+model ImprovementIdea {
+  id          String   @id @default(uuid())
+  name        String?
+  email       String?
+  title       String
+  description String
+  source_url  String?
+  status      String   @default("pending")
+  decision    String?
+  createdAt   DateTime @default(now())
+}
