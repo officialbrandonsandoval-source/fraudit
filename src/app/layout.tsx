@@ -73,6 +73,9 @@ export default function RootLayout({
               <Link href="/states" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
                 States
               </Link>
+              <Link href="/top50" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
+                Top 50
+              </Link>
               <Link href="/reports" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
                 Reports
               </Link>
@@ -88,9 +91,14 @@ export default function RootLayout({
             Built on public data. Statistical flags only — not proof of
             wrongdoing.
           </div>
-          <Link href="/improve" className="text-zinc-500 transition hover:text-accent">
-            Suggest Improvement
-          </Link>
+          <div className="flex items-center justify-center gap-4">
+            <Link href="/about" className="text-zinc-500 transition hover:text-accent">
+              About
+            </Link>
+            <Link href="/improve" className="text-zinc-500 transition hover:text-accent">
+              Suggest Improvement
+            </Link>
+          </div>
         </footer>
         <Analytics />
       </body>

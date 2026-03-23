@@ -154,6 +154,13 @@ export default function ProviderPage() {
   const [tipContent, setTipContent] = useState("");
   const [tipSent, setTipSent] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [canShare, setCanShare] = useState(false);
+  const [alertEmail, setAlertEmail] = useState("");
+  const [alertStatus, setAlertStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
+
+  useEffect(() => {
+    setCanShare(typeof navigator !== "undefined" && typeof navigator.share === "function");
+  }, []);
 
   useEffect(() => {
     fetch(`/api/provider/${params.id}`)
@@ -219,13 +226,45 @@ export default function ProviderPage() {
             )}
           </div>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => {
+              const url = window.location.href;
+              const text = `${provider.name} — Risk Score ${provider.riskScore}/100 on Fraudit`;
+              window.open(
+                `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`,
+                "_blank",
+                "noopener,noreferrer,width=550,height=420"
+              );
+            }}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-2 text-sm transition hover:bg-white/5"
+            title="Share on X"
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Post
+          </button>
           <button
             onClick={copyUrl}
-            className="rounded-lg border border-white/10 px-4 py-2 text-sm transition hover:bg-white/5"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-2 text-sm transition hover:bg-white/5"
           >
-            {copied ? "Copied!" : "Share"}
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            {copied ? "Copied!" : "Copy Link"}
           </button>
+          {canShare && (
+            <button
+              onClick={() => {
+                navigator.share({
+                  title: `${provider.name} — Fraudit Risk Report`,
+                  text: `Risk Score ${provider.riskScore}/100. ${provider.anomalies[0] || "View full report."}`,
+                  url: window.location.href,
+                });
+              }}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-2 text-sm transition hover:bg-white/5"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+              Share
+            </button>
+          )}
           <button
             onClick={() => setTipOpen(true)}
             className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600"
@@ -291,6 +330,59 @@ export default function ProviderPage() {
       {/* Related entities */}
       <div className="mb-8">
         <RelatedEntities providerId={provider.id} />
+      </div>
+
+      {/* Alert subscription */}
+      <div className="mb-8 rounded-xl border border-white/10 bg-white/5 p-6">
+        <h3 className="mb-2 text-lg font-semibold">Get Alerts for This Provider</h3>
+        <p className="mb-4 text-sm text-zinc-400">
+          Enter your email to receive notifications when this provider&apos;s risk score changes.
+        </p>
+        {alertStatus === "done" ? (
+          <p className="text-sm text-green-400">Subscribed! You&apos;ll be notified of changes.</p>
+        ) : (
+          <form
+            onSubmit={async (e) => {
+              e.preventDefault();
+              if (!alertEmail.trim()) return;
+              setAlertStatus("saving");
+              try {
+                const res = await fetch("/api/alert", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ email: alertEmail, providerId: params.id }),
+                });
+                if (res.ok) {
+                  setAlertStatus("done");
+                } else {
+                  setAlertStatus("error");
+                }
+              } catch {
+                setAlertStatus("error");
+              }
+            }}
+            className="flex gap-2"
+          >
+            <input
+              type="email"
+              value={alertEmail}
+              onChange={(e) => { setAlertEmail(e.target.value); setAlertStatus("idle"); }}
+              placeholder="your@email.com"
+              required
+              className="flex-1 rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-white placeholder-zinc-500 outline-none focus:border-accent"
+            />
+            <button
+              type="submit"
+              disabled={alertStatus === "saving"}
+              className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600 disabled:opacity-50"
+            >
+              {alertStatus === "saving" ? "..." : "Subscribe"}
+            </button>
+          </form>
+        )}
+        {alertStatus === "error" && (
+          <p className="mt-2 text-xs text-red-400">Something went wrong. Try again.</p>
+        )}
       </div>
 
       {/* Tip modal */}
