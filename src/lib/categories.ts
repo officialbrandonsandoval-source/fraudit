@@ -38,23 +38,23 @@ export function detectCategories(provider: {
   const combined = progs + " " + anoms;
 
   if (
-    /hospice|clinic|hospital|health|medical|nurse|physician|therapy|rehab|surgical|dental|pharma|dialysis|home\s?health|dme/i.test(
+    /medicare|medicaid|hospice|clinic|hospital|health|medical|nurse|physician|therapy|rehab|surgical|dental|pharma|dialysis|home\s?health|dme/i.test(
       combined,
     )
   ) {
     cats.push("healthcare");
   }
-  if (/\bva\b|veteran|military|defense|\bdod\b/i.test(combined)) {
+  if (/va contractor|\bva\b|veteran|military|defense|\bdod\b/i.test(combined)) {
     cats.push("va");
   }
   if (
-    /child\s?care|daycare|day\s?care|pediatric|preschool|nursery|head\s?start/i.test(
+    /child\s?care|ccdf|daycare|day\s?care|pediatric|preschool|nursery|head\s?start/i.test(
       combined,
     )
   ) {
     cats.push("childcare");
   }
-  if (/ghost/i.test(anoms)) {
+  if (/ghost|zero billing|\$0 medicare/i.test(anoms)) {
     cats.push("ghost");
   }
 
