@@ -7,6 +7,7 @@ import {
   Geographies,
   Geography,
 } from "react-simple-maps";
+import { CATEGORIES, type CategoryKey } from "@/lib/categories";
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
@@ -57,14 +58,19 @@ function getColor(highRisk: number): string {
 export default function MapPage() {
   const router = useRouter();
   const [stats, setStats] = useState<StateStats[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<CategoryKey>("all");
+  const [loading, setLoading] = useState(false);
   const [tooltip, setTooltip] = useState<{ x: number; y: number; content: string } | null>(null);
 
   useEffect(() => {
-    fetch("/api/map-stats")
+    setLoading(true);
+    const params = selectedCategory !== "all" ? `?category=${selectedCategory}` : "";
+    fetch(`/api/map-stats${params}`)
       .then((r) => r.json())
       .then((data) => setStats(Array.isArray(data) ? data : []))
-      .catch(() => {});
-  }, []);
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [selectedCategory]);
 
   const statsByAbbr: Record<string, StateStats> = {};
   for (const s of stats) {
@@ -77,9 +83,33 @@ export default function MapPage() {
         <h1 className="mb-2 text-3xl font-bold">
           <span className="text-accent">Fraud Risk by State</span>
         </h1>
-        <p className="mb-8 text-sm text-zinc-500">
+        <p className="mb-6 text-sm text-zinc-500">
           High-risk provider density by state. Click a state to search its providers.
         </p>
+
+        {/* Category layer toggles */}
+        <div className="mb-4 flex flex-wrap gap-2">
+          {CATEGORIES.map((cat) => {
+            const isActive = selectedCategory === cat.key;
+            return (
+              <button
+                key={cat.key}
+                onClick={() => setSelectedCategory(cat.key)}
+                className={`rounded-lg px-3 py-1.5 text-sm border transition ${
+                  isActive
+                    ? `${cat.bgColor} ${cat.color} ${cat.borderColor} font-medium`
+                    : "border-white/10 text-zinc-500 hover:text-zinc-300 hover:border-white/20"
+                }`}
+              >
+                {cat.icon && <span className="mr-1">{cat.icon}</span>}
+                {cat.label}
+              </button>
+            );
+          })}
+          {loading && (
+            <span className="self-center text-xs text-zinc-600 ml-2">Loading...</span>
+          )}
+        </div>
 
         <div className="relative rounded-xl border border-white/10 bg-white/5 p-4">
           <ComposableMap projection="geoAlbersUsa" className="w-full">
@@ -152,7 +182,14 @@ export default function MapPage() {
           <span className="flex items-center gap-1.5">
             <span className="inline-block h-3 w-3 rounded" style={{ background: "#ef4444" }} /> 100+
           </span>
-          <span className="ml-auto">high-risk providers (score &ge; 60)</span>
+          <span className="ml-auto">
+            high-risk providers (score &ge; 60)
+            {selectedCategory !== "all" && (
+              <span className="ml-1 text-zinc-400">
+                · filtered by {CATEGORIES.find(c => c.key === selectedCategory)?.label}
+              </span>
+            )}
+          </span>
         </div>
       </div>
     </div>

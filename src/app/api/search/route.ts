@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import {
+  type CategoryKey,
+  type RiskLevel,
+  matchesCategory,
+  matchesRisk,
+} from "@/lib/categories";
 
 // Full state name → abbreviation
 const STATE_ABBR: Record<string, string> = {
@@ -29,32 +35,18 @@ interface SearchParts {
   general?: string;
 }
 
-/**
- * Parse a query into typed parts.
- * Handles:
- *  - "California" → { state: "CA" }
- *  - "CA" → { state: "CA" }
- *  - "Los Angeles CA" → { city: "Los Angeles", state: "CA" }
- *  - "Los Angeles, California" → { city: "Los Angeles", state: "CA" }
- *  - "Los Angeles, CA 90210" → { city: "Los Angeles", state: "CA" }
- *  - "90210" → { general: "90210" }
- *  - "provider name" → { general: "provider name" }
- */
 function parseQuery(raw: string): SearchParts {
   const trimmed = raw.trim();
   const lower = trimmed.toLowerCase();
 
-  // Exact match: full state name
   if (STATE_ABBR[lower]) {
     return { state: STATE_ABBR[lower] };
   }
 
-  // Exact match: 2-letter abbreviation
   if (/^[a-z]{2}$/i.test(trimmed) && ABBR_STATE[lower]) {
     return { state: trimmed.toUpperCase() };
   }
 
-  // "City, Full State Name" or "City Full State Name"
   for (const [fullName, abbr] of Object.entries(STATE_ABBR)) {
     const escaped = fullName.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     const pattern = new RegExp(`^(.+?)[,\\s]+${escaped}(?:\\s+\\d{5})?$`, "i");
@@ -62,7 +54,6 @@ function parseQuery(raw: string): SearchParts {
     if (m) return { city: m[1].trim(), state: abbr };
   }
 
-  // "City, ST" or "City ST" or "City, ST ZIPCODE"
   const cityStateZip = trimmed.match(/^(.+?)[,\s]+([A-Za-z]{2})(?:\s+\d{5})?$/);
   if (cityStateZip) {
     const potentialAbbr = cityStateZip[2].toUpperCase();
@@ -71,17 +62,18 @@ function parseQuery(raw: string): SearchParts {
     }
   }
 
-  // Zip code only
   if (/^\d{5}(-\d{4})?$/.test(trimmed)) {
     return { general: trimmed };
   }
 
-  // Fallback: general search
   return { general: trimmed };
 }
 
 export async function GET(request: NextRequest) {
   const raw = request.nextUrl.searchParams.get("q")?.trim() || "";
+  const category = (request.nextUrl.searchParams.get("category") || "all") as CategoryKey;
+  const risk = (request.nextUrl.searchParams.get("risk") || "all") as RiskLevel;
+
   if (!raw) return NextResponse.json([]);
 
   const parts = parseQuery(raw);
@@ -89,21 +81,17 @@ export async function GET(request: NextRequest) {
     .from("Provider")
     .select("*")
     .order("riskScore", { ascending: false })
-    .limit(100);
+    .limit(200);
 
   if (parts.city && parts.state) {
-    // City + state — exact state match, city ilike
     query = query
       .ilike("city", `%${parts.city}%`)
       .eq("state", parts.state);
   } else if (parts.state && !parts.city) {
-    // State only
     query = query.eq("state", parts.state);
   } else {
-    // General: search name, address, city, zip, state all at once
     const g = parts.general || raw;
 
-    // Special handling for "hospice" keyword — filter by program
     if (g.toLowerCase().includes("hospice")) {
       query = query.contains("programs", ["Medicare Hospice"]);
     } else {
@@ -120,5 +108,17 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 
-  return NextResponse.json(data || []);
+  let results = data || [];
+
+  // Apply category filter
+  if (category !== "all") {
+    results = results.filter((p) => matchesCategory(p, category));
+  }
+
+  // Apply risk level filter
+  if (risk !== "all") {
+    results = results.filter((p) => matchesRisk(p.riskScore, risk));
+  }
+
+  return NextResponse.json(results.slice(0, 100));
 }

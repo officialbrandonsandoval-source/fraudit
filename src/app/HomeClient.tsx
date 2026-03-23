@@ -3,6 +3,13 @@
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import {
+  CATEGORIES,
+  type CategoryKey,
+  matchesCategory,
+  primaryCategory,
+  getCategoryConfig,
+} from "@/lib/categories";
 
 interface Provider {
   id: string;
@@ -87,6 +94,19 @@ function RiskBar({ score }: { score: number }) {
   );
 }
 
+function SmallCategoryBadge({ category }: { category: CategoryKey }) {
+  const config = getCategoryConfig(category);
+  if (category === "all") return null;
+  return (
+    <span
+      className={`inline-flex items-center rounded border px-1.5 py-0 text-[10px] font-medium ${config.bgColor} ${config.color} ${config.borderColor}`}
+    >
+      <span className="mr-0.5">{config.icon}</span>
+      {config.label}
+    </span>
+  );
+}
+
 export default function HomeClient({
   initialStats,
   initialTop50,
@@ -96,6 +116,7 @@ export default function HomeClient({
 }) {
   const router = useRouter();
   const [query, setQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<CategoryKey>("all");
   const [displayStats, setDisplayStats] = useState({
     providers: initialStats.totalProviders,
     allPaid: initialStats.totalAllPaid,
@@ -132,6 +153,21 @@ export default function HomeClient({
     if (normalized) {
       router.push(`/search?q=${encodeURIComponent(normalized)}`);
     }
+  }
+
+  // Filter top 50 by selected category
+  const filteredTop50 =
+    selectedCategory === "all"
+      ? initialTop50
+      : initialTop50.filter((p) => matchesCategory(p, selectedCategory));
+
+  // Compute category counts
+  const categoryCounts: Record<string, number> = {};
+  for (const cat of CATEGORIES) {
+    categoryCounts[cat.key] =
+      cat.key === "all"
+        ? initialTop50.length
+        : initialTop50.filter((p) => matchesCategory(p, cat.key)).length;
   }
 
   return (
@@ -208,9 +244,36 @@ export default function HomeClient({
           </span>
         </div>
 
-        {initialTop50.length === 0 ? (
+        {/* Category tabs */}
+        <div className="mb-4 flex flex-wrap gap-2">
+          {CATEGORIES.map((cat) => {
+            const count = categoryCounts[cat.key] ?? 0;
+            const isActive = selectedCategory === cat.key;
+            return (
+              <button
+                key={cat.key}
+                onClick={() => setSelectedCategory(cat.key)}
+                className={`rounded-lg px-3 py-1.5 text-sm border transition ${
+                  isActive
+                    ? `${cat.bgColor} ${cat.color} ${cat.borderColor} font-medium`
+                    : "border-white/10 text-zinc-500 hover:text-zinc-300 hover:border-white/20"
+                }`}
+              >
+                {cat.icon && <span className="mr-1">{cat.icon}</span>}
+                {cat.label}
+                <span className={`ml-1.5 text-xs ${isActive ? "opacity-80" : "opacity-50"}`}>
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {filteredTop50.length === 0 ? (
           <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-8 text-center text-zinc-500 text-sm">
-            Rankings will appear as data is ingested.
+            {initialTop50.length === 0
+              ? "Rankings will appear as data is ingested."
+              : "No providers match this category filter."}
           </div>
         ) : (
           <div className="overflow-hidden rounded-xl border border-white/10">
@@ -226,15 +289,18 @@ export default function HomeClient({
                 </tr>
               </thead>
               <tbody>
-                {initialTop50.map((p, i) => (
+                {filteredTop50.map((p, i) => (
                   <tr
                     key={p.id}
                     className="border-b border-white/5 transition hover:bg-white/5 last:border-0"
                   >
                     <td className="px-4 py-3 text-zinc-600 font-mono text-xs">{i + 1}</td>
                     <td className="px-4 py-3">
-                      <div className="font-medium text-zinc-100 truncate max-w-[200px] sm:max-w-xs">
-                        {p.name}
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium text-zinc-100 truncate max-w-[160px] sm:max-w-xs">
+                          {p.name}
+                        </span>
+                        <SmallCategoryBadge category={primaryCategory(p)} />
                       </div>
                       {p.anomalies.length > 0 && (
                         <div className="text-xs text-red-400/70 mt-0.5 truncate max-w-[200px] sm:max-w-xs">

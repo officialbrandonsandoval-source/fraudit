@@ -1,5 +1,15 @@
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import {
+  CATEGORIES,
+  RISK_LEVELS,
+  type CategoryKey,
+  type RiskLevel,
+  matchesCategory,
+  matchesRisk,
+  primaryCategory,
+  getCategoryConfig,
+} from "@/lib/categories";
 
 interface Provider {
   id: string;
@@ -91,6 +101,19 @@ function RiskBadge({ score }: { score: number }) {
   );
 }
 
+function CategoryBadge({ category }: { category: CategoryKey }) {
+  const config = getCategoryConfig(category);
+  if (category === "all") return null;
+  return (
+    <span
+      className={`rounded border px-2 py-0.5 text-xs font-medium ${config.bgColor} ${config.color} ${config.borderColor}`}
+    >
+      <span className="mr-1">{config.icon}</span>
+      {config.label}
+    </span>
+  );
+}
+
 async function searchProviders(raw: string): Promise<Provider[]> {
   if (!raw) return [];
   const parts = parseQuery(raw);
@@ -99,7 +122,7 @@ async function searchProviders(raw: string): Promise<Provider[]> {
     .from("Provider")
     .select("*")
     .order("riskScore", { ascending: false })
-    .limit(100);
+    .limit(200);
 
   if (parts.city && parts.state) {
     query = query.ilike("city", `%${parts.city}%`).eq("state", parts.state);
@@ -117,16 +140,57 @@ async function searchProviders(raw: string): Promise<Provider[]> {
   return data || [];
 }
 
+function buildFilterUrl(q: string, category: string, risk: string): string {
+  const params = new URLSearchParams();
+  if (q) params.set("q", q);
+  if (category && category !== "all") params.set("category", category);
+  if (risk && risk !== "all") params.set("risk", risk);
+  return `/search?${params.toString()}`;
+}
+
 export default async function SearchPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; category?: string; risk?: string }>;
 }) {
-  const { q } = await searchParams;
+  const { q, category: catParam, risk: riskParam } = await searchParams;
   const query = q || "";
+  const selectedCategory = (catParam || "all") as CategoryKey;
+  const selectedRisk = (riskParam || "all") as RiskLevel;
+
   const parts = parseQuery(query);
   const displayLabel = describeQuery(parts, query);
-  const providers = await searchProviders(query);
+  const allResults = await searchProviders(query);
+
+  // Compute category counts from full results
+  const categoryCounts: Record<string, number> = {};
+  for (const cat of CATEGORIES) {
+    categoryCounts[cat.key] =
+      cat.key === "all"
+        ? allResults.length
+        : allResults.filter((p) => matchesCategory(p, cat.key)).length;
+  }
+
+  // Filter by category
+  const categoryFiltered =
+    selectedCategory === "all"
+      ? allResults
+      : allResults.filter((p) => matchesCategory(p, selectedCategory));
+
+  // Compute risk counts from category-filtered results
+  const riskCounts: Record<string, number> = {};
+  for (const level of RISK_LEVELS) {
+    riskCounts[level.key] =
+      level.key === "all"
+        ? categoryFiltered.length
+        : categoryFiltered.filter((p) => matchesRisk(p.riskScore, level.key)).length;
+  }
+
+  // Apply risk filter
+  const providers =
+    selectedRisk === "all"
+      ? categoryFiltered
+      : categoryFiltered.filter((p) => matchesRisk(p.riskScore, selectedRisk));
 
   return (
     <div className="mx-auto max-w-4xl px-6 py-10">
@@ -152,7 +216,7 @@ export default async function SearchPage({
       </div>
 
       {/* Quick re-search */}
-      <form action="/search" method="GET" className="mb-8">
+      <form action="/search" method="GET" className="mb-6">
         <div className="relative">
           <input
             type="text"
@@ -170,6 +234,55 @@ export default async function SearchPage({
         </div>
       </form>
 
+      {/* Category tabs */}
+      <div className="mb-3 flex flex-wrap gap-2">
+        {CATEGORIES.map((cat) => {
+          const count = categoryCounts[cat.key] ?? 0;
+          const isActive = selectedCategory === cat.key;
+          return (
+            <Link
+              key={cat.key}
+              href={buildFilterUrl(query, cat.key, selectedRisk)}
+              className={`rounded-lg px-3 py-1.5 text-sm border transition ${
+                isActive
+                  ? `${cat.bgColor} ${cat.color} ${cat.borderColor} font-medium`
+                  : "border-white/10 text-zinc-500 hover:text-zinc-300 hover:border-white/20"
+              }`}
+            >
+              {cat.icon && <span className="mr-1">{cat.icon}</span>}
+              {cat.label}
+              <span className={`ml-1.5 text-xs ${isActive ? "opacity-80" : "opacity-50"}`}>
+                {count}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+
+      {/* Risk level filters */}
+      <div className="mb-8 flex flex-wrap gap-2">
+        {RISK_LEVELS.map((level) => {
+          const count = riskCounts[level.key] ?? 0;
+          const isActive = selectedRisk === level.key;
+          return (
+            <Link
+              key={level.key}
+              href={buildFilterUrl(query, selectedCategory, level.key)}
+              className={`rounded-full px-3 py-1 text-xs border transition ${
+                isActive
+                  ? "bg-white/10 text-zinc-200 border-white/20 font-medium"
+                  : "border-white/10 text-zinc-600 hover:text-zinc-400 hover:border-white/15"
+              }`}
+            >
+              {level.label}
+              <span className={`ml-1 ${isActive ? "opacity-80" : "opacity-50"}`}>
+                {count}
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+
       {providers.length === 0 ? (
         <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-12 text-center">
           <p className="text-zinc-400 mb-2">No providers matched &ldquo;{query}&rdquo;</p>
@@ -179,7 +292,7 @@ export default async function SearchPage({
         </div>
       ) : (
         <div className="space-y-4">
-          {providers.map((p) => (
+          {providers.slice(0, 100).map((p) => (
             <div
               key={p.id}
               className="rounded-xl border border-white/10 bg-white/5 p-6 hover:border-white/20 transition"
@@ -189,6 +302,7 @@ export default async function SearchPage({
                   <div className="mb-1 flex items-center gap-3 flex-wrap">
                     <h3 className="text-lg font-semibold">{p.name}</h3>
                     <RiskBadge score={p.riskScore} />
+                    <CategoryBadge category={primaryCategory(p)} />
                   </div>
                   <p className="text-sm text-zinc-400">
                     {p.address}, {p.city}, {p.state} {p.zip}
