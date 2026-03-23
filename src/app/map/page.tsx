@@ -59,16 +59,24 @@ export default function MapPage() {
   const router = useRouter();
   const [stats, setStats] = useState<StateStats[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey>("all");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [tooltip, setTooltip] = useState<{ x: number; y: number; content: string } | null>(null);
 
   useEffect(() => {
     setLoading(true);
+    setError(null);
     const params = selectedCategory !== "all" ? `?category=${selectedCategory}` : "";
     fetch(`/api/map-stats${params}`)
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      })
       .then((data) => setStats(Array.isArray(data) ? data : []))
-      .catch(() => {})
+      .catch((err) => {
+        console.error("[map] Failed to load stats:", err);
+        setError("Failed to load map data. Please refresh.");
+      })
       .finally(() => setLoading(false));
   }, [selectedCategory]);
 
@@ -108,6 +116,9 @@ export default function MapPage() {
           })}
           {loading && (
             <span className="self-center text-xs text-zinc-600 ml-2">Loading...</span>
+          )}
+          {error && (
+            <span className="self-center text-xs text-red-500 ml-2">{error}</span>
           )}
         </div>
 
