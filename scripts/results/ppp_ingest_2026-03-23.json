@@ -1,0 +1,1829 @@
+{
+  "stats": {
+    "run_date": "2026-03-23",
+    "records_loaded": 10000,
+    "flagged_loans": 799,
+    "providers_upserted": 799
+  },
+  "flagged_sample": [
+    {
+      "name": "BOYER CHILDREN'S CLINIC",
+      "state": "",
+      "amount": 691355.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KIRTLEY CONSTRUCTION INC",
+      "state": "",
+      "amount": 499871.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AERO BOX LLC",
+      "state": "",
+      "amount": 367437.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "HUDSON EXTRUSIONS INC.",
+      "state": "",
+      "amount": 328840.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MIAMITOWN AUTO PARTS AND RECYCLING INC",
+      "state": "",
+      "amount": 272380.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "POPPYCOCKS INC",
+      "state": "",
+      "amount": 257088.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "CHURCH SQUARE PHARMACY INC",
+      "state": "",
+      "amount": 250000.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "FERNANDINA BEACH HOTEL GROUP LLC",
+      "state": "",
+      "amount": 170170.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "OTTAWA PRODUCTS CO INC",
+      "state": "",
+      "amount": 155010.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KAKIVIK ASSET MANAGEMENT, LLC",
+      "state": "AK",
+      "amount": 9538531.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "High-Risk NAICS 541990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "TYONEK GLOBAL SERVICES, LLC",
+      "state": "AK",
+      "amount": 6422316.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TYONEK WORLDWIDE SERVICES, INC.",
+      "state": "AK",
+      "amount": 6412487.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "I. C. E. SERVICES, INC",
+      "state": "AK",
+      "amount": 5682490.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TATITLEK TECHNOLOGIES, INC.",
+      "state": "AK",
+      "amount": 5157628.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KATMAI HEALTH SERVICES LLC",
+      "state": "AK",
+      "amount": 5036100.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AHTNA SUPPORT AND TRAINING SERVICES LLC",
+      "state": "AK",
+      "amount": 4986465.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TATONDUK OUTFITTERS LTD",
+      "state": "AK",
+      "amount": 4277000.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TYONEK MANUFACTURING GROUP, INC.",
+      "state": "AK",
+      "amount": 3912364.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GEONORTH, LLC.",
+      "state": "AK",
+      "amount": 3535477.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PRUHS CONSTRUCTION CO., L.L.C.",
+      "state": "AK",
+      "amount": 3403381.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALYESKA RESORT OPERATIONS LIMITED PARTNERSHIP",
+      "state": "AK",
+      "amount": 3400700.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AHTNA ENVIRONMENTAL INC",
+      "state": "AK",
+      "amount": 3344500.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KAWERAK, INC.",
+      "state": "AK",
+      "amount": 3142152.86,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GREAT NORTHWEST, INC.",
+      "state": "AK",
+      "amount": 3079300.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "BEACON OCCUPATIONAL HEALTH AND SAFETY SERVICES, INC.",
+      "state": "AK",
+      "amount": 2987200.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AHTNA CONSTRUCTION &AMP; PRIMARY PRODUCTS COMPANY, LLC",
+      "state": "AK",
+      "amount": 2755587.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "BERING AIR, INC.",
+      "state": "AK",
+      "amount": 2574300.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "DAVIS CONSTRUCTORS & ENGINEERS",
+      "state": "AK",
+      "amount": 2464869.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "DENALI FOODS, INC.",
+      "state": "AK",
+      "amount": 2264130.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AHTNA PROFESSIONAL SERVICES INC",
+      "state": "AK",
+      "amount": 2226432.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NEW HORIZONS TELECOM INC.",
+      "state": "AK",
+      "amount": 2009300.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NORTHERN HOSPITALITY GROUP INC",
+      "state": "AK",
+      "amount": 2000000.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "SAMSON ELECTRIC, INC",
+      "state": "AK",
+      "amount": 1991300.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GUARDIAN SECURITY SYSTEMS, INC.",
+      "state": "AK",
+      "amount": 1956200.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NORTHERN HOSPITALITY GROUP",
+      "state": "AK",
+      "amount": 1920138.25,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA SALES AND SERVICE, INC.",
+      "state": "AK",
+      "amount": 1863017.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "RYAN AIR SERVICE, INC.",
+      "state": "AK",
+      "amount": 1818428.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "WORLD WIDE MOVERS INC",
+      "state": "AK",
+      "amount": 1814674.67,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "STG, INC.",
+      "state": "AK",
+      "amount": 1778068.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "TUNISTA CONSTRUCTION, LLC",
+      "state": "AK",
+      "amount": 1735574.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "ALASKA TRAVEL ADVENTURES, INC.",
+      "state": "AK",
+      "amount": 1481939.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AHTNA ENGINEERING SERVICES LLC",
+      "state": "AK",
+      "amount": 1425950.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "BIRCH HORTON BITTNER &",
+      "state": "AK",
+      "amount": 1416283.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NORDIC-CALISTA SERVICES NO. 1, A JOINT VENTURE",
+      "state": "AK",
+      "amount": 1356272.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "DENALI VISIONS 3000 CORPORATION",
+      "state": "AK",
+      "amount": 1342978.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "RIM ARCHITECTS, LLC",
+      "state": "AK",
+      "amount": 1310060.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA UROLOGICAL INSTITUTE, P.C.",
+      "state": "AK",
+      "amount": 1256700.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ANCHORAGE MUSEUM ASSOCIATION",
+      "state": "AK",
+      "amount": 1177057.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KATMAI GOVERNMENT SERVICES",
+      "state": "AK",
+      "amount": 1131100.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GENEVA WOODS HEALTH SUPPLIES, LLC",
+      "state": "AK",
+      "amount": 1125000.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MIDNIGHT SUN TECHNOLOGIES, LLC",
+      "state": "AK",
+      "amount": 1107000.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "MASS EXCAVATION, INC.",
+      "state": "AK",
+      "amount": 1072900.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AHTNA INCORPORATED",
+      "state": "AK",
+      "amount": 1064305.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "SLAGLE LLC",
+      "state": "AK",
+      "amount": 1050371.7,
+      "signals": [
+        "High-Risk NAICS 541990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GLACIER SERVICES INC",
+      "state": "AK",
+      "amount": 1027100.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AHTNA FACILITY SERVICES INCORPORATED",
+      "state": "AK",
+      "amount": 1018592.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "BETHEL CONTRACTING LLC",
+      "state": "AK",
+      "amount": 1013202.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "WRIGHT AIR SERVICE, INC.",
+      "state": "AK",
+      "amount": 998702.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "YULISTA SUPPORT SERVICES, LLC",
+      "state": "AK",
+      "amount": 984529.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "KATMAI INTEGRATED SOLUTIONS LLC",
+      "state": "AK",
+      "amount": 981965.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PRINCE WILLIAM SOUND AQUACULTURE CORPORATION",
+      "state": "AK",
+      "amount": 968477.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "JAMHI HEALTH& WELLNESS INC",
+      "state": "AK",
+      "amount": 966905.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "DOYON DRILLING, INC.",
+      "state": "AK",
+      "amount": 957012.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KATMAI RESOURCE MANAGEMENT LLC",
+      "state": "AK",
+      "amount": 933651.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KWIKPAK FISHERIES, LLC",
+      "state": "AK",
+      "amount": 905700.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MAC PIZZA COMPANY LLC",
+      "state": "AK",
+      "amount": 878100.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TOTAL ABLE AUTOMOTIVE LLC",
+      "state": "AK",
+      "amount": 847787.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "SALTWATER INC",
+      "state": "AK",
+      "amount": 839028.54,
+      "signals": [
+        "High-Risk NAICS 541990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KOMAN GOVERNMENT SOLUTIONS, LLC",
+      "state": "AK",
+      "amount": 838068.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "DRAKE CONSTRUCTION, INC.",
+      "state": "AK",
+      "amount": 805700.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "STORMWATER PLANS, LLC",
+      "state": "AK",
+      "amount": 773938.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "TATITLEK FEDERAL SERVICES, INC.",
+      "state": "AK",
+      "amount": 761215.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TAIGA MINING COMPANY, INC.",
+      "state": "AK",
+      "amount": 751949.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AAA MOVING AND STORAGE INC",
+      "state": "AK",
+      "amount": 732800.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TUNISTA LOGISTICS SOLUTIONS, LLC",
+      "state": "AK",
+      "amount": 722345.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "GREAT ALASKAN HOLIDAYS INC",
+      "state": "AK",
+      "amount": 717467.5,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TYONEK NATIVE CORPORATION",
+      "state": "AK",
+      "amount": 696423.0,
+      "signals": [
+        "High-Risk NAICS 541990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GMG GENERAL INC",
+      "state": "AK",
+      "amount": 693888.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MIDNIGHT SUN GLOBAL SERVICES, LLC",
+      "state": "AK",
+      "amount": 689600.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "GRAND DENALI LLC",
+      "state": "AK",
+      "amount": 689200.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "BLAZY CONSTRUCTION, INC.",
+      "state": "AK",
+      "amount": 676655.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TRINITY ANALYSIS & DEVELOPMENT CORP",
+      "state": "AK",
+      "amount": 674223.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "WESTERN SHEET METAL & CONTROLS, INC.",
+      "state": "AK",
+      "amount": 673400.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "CAPE FOX LODGE, LLC",
+      "state": "AK",
+      "amount": 643665.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "WELLSPRING HOME HEALTH CENTER, LLC",
+      "state": "AK",
+      "amount": 635800.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GRACE CHRISTIAN SCHOOL",
+      "state": "AK",
+      "amount": 616336.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "5150 GLOBAL SOLUTIONS, LLC",
+      "state": "AK",
+      "amount": 616300.0,
+      "signals": [
+        "High-Risk NAICS 812990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PROVIDENCE SURGERY CENTERS, LLC",
+      "state": "AK",
+      "amount": 610688.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "SPECIALTY IMPORTS INC",
+      "state": "AK",
+      "amount": 604798.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "EVERTS AIR FUEL, INC.",
+      "state": "AK",
+      "amount": 600000.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KONIAG, INC.",
+      "state": "AK",
+      "amount": 589600.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "INTERIOR ALASKA CENTER FOR NON-VIOLENT LIVING",
+      "state": "AK",
+      "amount": 563660.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NYAC MINING COMPANY, LLC",
+      "state": "AK",
+      "amount": 556700.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AHTNA GLOBAL LLC",
+      "state": "AK",
+      "amount": 535625.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ENVIRONMENTAL ASSESSMENT SERVICES, LLC",
+      "state": "AK",
+      "amount": 522590.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "CADENCE GENERAL LLC",
+      "state": "AK",
+      "amount": 518748.79,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TRINION QUALITY CARE SERVICES, INC.",
+      "state": "AK",
+      "amount": 515801.65,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "OPHTHALMIC ASSOCIATES, A PROFESSIONAL CORPORATION",
+      "state": "AK",
+      "amount": 513900.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "YUKON EQUIPMENT, INC.",
+      "state": "AK",
+      "amount": 508587.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "ALASKA GLAZING INC.",
+      "state": "AK",
+      "amount": 503116.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NANIQ GLOBAL LOGISTICS LLC",
+      "state": "AK",
+      "amount": 501440.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "FRIEND CONTRACTORS, LLC",
+      "state": "AK",
+      "amount": 500000.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "SAI INVESTMENTS, LLC",
+      "state": "AK",
+      "amount": 498411.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MOORE HEATING, AIR CONDITIONING & REFRIGERATION INC",
+      "state": "AK",
+      "amount": 496107.1,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "DENALI HOSPITALITY GROUP INC",
+      "state": "AK",
+      "amount": 490798.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA ROTEQ CORPORATION",
+      "state": "AK",
+      "amount": 484637.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ANESTHESIA CARE ASSOCIATES",
+      "state": "AK",
+      "amount": 467097.5,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GREAT NORTHERN ENGINEERING",
+      "state": "AK",
+      "amount": 466400.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALL  FOR KIDS PEDIATRIC THERAPY, LLC",
+      "state": "AK",
+      "amount": 465451.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "DOWLAND BACH CORP",
+      "state": "AK",
+      "amount": 464900.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NORTH PORT RENTALS, INC. AND ALEUTIAN FREIGHT SERVICES, INC.",
+      "state": "AK",
+      "amount": 463554.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PRODUCTION TESTING SERVICES INC",
+      "state": "AK",
+      "amount": 463503.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AMERICAN TIRE WAREHOUSE, INC.",
+      "state": "AK",
+      "amount": 459537.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ENVIRONMENTAL COMPLIANCE CONSULTANTS, INC",
+      "state": "AK",
+      "amount": 456210.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "THREE STAR ENTERPRISES, LLC",
+      "state": "AK",
+      "amount": 452059.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KETCHIKAN MECHANICAL INC.",
+      "state": "AK",
+      "amount": 451300.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA WEATHER OPERATIONS SERVICES INC",
+      "state": "AK",
+      "amount": 450000.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan",
+        "High-Risk NAICS 541990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "SEAVIEW COMMUNITY SERVICES",
+      "state": "AK",
+      "amount": 449568.76,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "WARBELOW'S AIR VENTURES, INC.",
+      "state": "AK",
+      "amount": 449118.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NORTHERN ALASKA TOUR COMPANY",
+      "state": "AK",
+      "amount": 448748.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PAPAC ALASKA LOGGING INC",
+      "state": "AK",
+      "amount": 444100.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NORTHERN GEOTECHNICAL ENGINEERING, INC.",
+      "state": "AK",
+      "amount": 443665.0,
+      "signals": [
+        "High-Risk NAICS 541990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "NORTHERN GEOTECHNICAL ENGINEERING, INC.",
+      "state": "AK",
+      "amount": 438200.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TYONEK SERVICES OVERHAUL FACILITY - STENNIS, LLC",
+      "state": "AK",
+      "amount": 426680.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TYONEK SERVICES GROUP INC",
+      "state": "AK",
+      "amount": 424879.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "STUAQPAK INC",
+      "state": "AK",
+      "amount": 424000.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "YUKON RIVER TOWING, LLC",
+      "state": "AK",
+      "amount": 415700.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA EXECUTIVE SEARCH INC",
+      "state": "AK",
+      "amount": 414352.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "THE FORAKER GROUP",
+      "state": "AK",
+      "amount": 413362.0,
+      "signals": [
+        "High-Risk NAICS 812990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KOMAN CONSTRUCTION, LLC",
+      "state": "AK",
+      "amount": 409038.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "ALASKA RED DOG SALOON, LLC",
+      "state": "AK",
+      "amount": 401322.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MAKAR EYECARE LLC",
+      "state": "AK",
+      "amount": 399297.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AIRLINE SUPPORT, INC.",
+      "state": "AK",
+      "amount": 386368.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AHTNA LOGISTICS LLC",
+      "state": "AK",
+      "amount": 385917.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "TIER I VETERINARY MEDICAL CENTER, LLC",
+      "state": "AK",
+      "amount": 380589.29,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "YUKON DELTA FISHERIES DEVELOPMENT ASSOCIATION",
+      "state": "AK",
+      "amount": 377676.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PUMP HOUSE LLC",
+      "state": "AK",
+      "amount": 372700.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "BETHEL ENVIRONMENTAL SOLUTIONS LLC",
+      "state": "AK",
+      "amount": 368915.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "WASILLA DRIVE-IN LLC",
+      "state": "AK",
+      "amount": 367750.42,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA UNIVERSAL SERVICES, LLC",
+      "state": "AK",
+      "amount": 356578.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "LATITUDE 63 NORTH INC",
+      "state": "AK",
+      "amount": 355992.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "DENALI HOSPITALITY GROUP INC.",
+      "state": "AK",
+      "amount": 350571.57,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MCDOWELL GROUP, INC.",
+      "state": "AK",
+      "amount": 346308.8,
+      "signals": [
+        "High-Risk NAICS 541990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KWIKPAK FISHERIES LLC",
+      "state": "AK",
+      "amount": 344520.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "YOUNGS' ENTERPRISES LLC",
+      "state": "AK",
+      "amount": 343626.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "WMLS INC.",
+      "state": "AK",
+      "amount": 337600.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PAYLESS USED CAR SALES LLC.",
+      "state": "AK",
+      "amount": 336109.49,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PALMER ALEHOUSE LLC",
+      "state": "AK",
+      "amount": 332007.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "YUKON DELTA FISHERIES DEVELOPMENT ASSOCIATION",
+      "state": "AK",
+      "amount": 321775.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "SWANSON'S ALASKA LLC",
+      "state": "AK",
+      "amount": 317855.87,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "SPRUCE ROOTS FAMILY DENTISTRY LLC",
+      "state": "AK",
+      "amount": 315160.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KATMAI MANAGEMENT SERVICES LLC",
+      "state": "AK",
+      "amount": 313900.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "KINGFISHER CHARTERS, LLC",
+      "state": "AK",
+      "amount": 311348.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AXYS, LLC",
+      "state": "AK",
+      "amount": 310914.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GOLD CACHE BINGO",
+      "state": "AK",
+      "amount": 308300.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "SUKAKPAK, INC.",
+      "state": "AK",
+      "amount": 306350.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PEDIATRIC DENTISTRY OF ALASKA",
+      "state": "AK",
+      "amount": 305550.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PAVING PRODUCTS, INC.",
+      "state": "AK",
+      "amount": 301080.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "COLD SPOT FEEDS INC.",
+      "state": "AK",
+      "amount": 300000.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "COASTAL NEUROLOGY & NEUROSURGERY INC",
+      "state": "AK",
+      "amount": 296694.27,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KIKIKTAGRUK INUPIAT CORPORATION",
+      "state": "AK",
+      "amount": 295350.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "SCHILLING ALASKA, INC.",
+      "state": "AK",
+      "amount": 293765.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "IT, LLC",
+      "state": "AK",
+      "amount": 291835.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "M2S, INC",
+      "state": "AK",
+      "amount": 283052.5,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "BEHAVIOR MATTERS LLC",
+      "state": "AK",
+      "amount": 277000.0,
+      "signals": [
+        "High-Risk NAICS 812990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ANCHORAGE ALEHOUSE LLC",
+      "state": "AK",
+      "amount": 273750.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "CATHERCO LLC",
+      "state": "AK",
+      "amount": 270840.09,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "DAMA INDUSTRIAL, LLC",
+      "state": "AK",
+      "amount": 265512.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA E-HEALTH NETWORK INC.",
+      "state": "AK",
+      "amount": 264975.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MIDNIGHT SUN HOME CARE INC.",
+      "state": "AK",
+      "amount": 264600.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "EAGLE RIVER ALEHOUSE, LLC",
+      "state": "AK",
+      "amount": 263758.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PETERKIN DISTRIBUTORS INC",
+      "state": "AK",
+      "amount": 260160.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "J. R. HERITAGE CONSTRUCTION, INC.",
+      "state": "AK",
+      "amount": 259217.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "S&P, ADVENTURES, INC.",
+      "state": "AK",
+      "amount": 259032.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AVANTE MEDICAL CENTER LLC",
+      "state": "AK",
+      "amount": 258250.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA WILDLIFE CONSERVATION CENTER",
+      "state": "AK",
+      "amount": 258000.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "LEGACY LOGISTICS LLC",
+      "state": "AK",
+      "amount": 256300.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "HENRY'S GREAT ALASKAN RESTAURANT INC",
+      "state": "AK",
+      "amount": 255166.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "BEHAVIOR MATTERS LLC",
+      "state": "AK",
+      "amount": 252902.5,
+      "signals": [
+        "High-Risk NAICS 812990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "CURTIS P. JEPPESEN",
+      "state": "AK",
+      "amount": 252700.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "FAIRBANKS NISSAN LLC",
+      "state": "AK",
+      "amount": 250625.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "RADY CONCRETE CONSTRUCTION, LLC.",
+      "state": "AK",
+      "amount": 247500.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "JOHN RICHARD CARR CORPORATION",
+      "state": "AK",
+      "amount": 246600.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA PERMANENT CAPITAL MANAGEMENT COMPAY",
+      "state": "AK",
+      "amount": 246410.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MICHAEL SANDERS, DMD, PC",
+      "state": "AK",
+      "amount": 231700.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AUTOMATED LAUNDRY SYSTEMS AND SUPPLY CORPORATION",
+      "state": "AK",
+      "amount": 229340.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA FULFILLMENT SERVICES, LLC",
+      "state": "AK",
+      "amount": 226277.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "PENINSULA PROCESSING & SMOKEHOUSE LLC",
+      "state": "AK",
+      "amount": 224985.1,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "SUMMIT CONSULTING SERVICES, INC.",
+      "state": "AK",
+      "amount": 224775.0,
+      "signals": [
+        "High-Risk NAICS 541990 \u2014 Common PPP Fraud Code"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "AESTHETIC FAMILY DENTISTRY, LLC",
+      "state": "AK",
+      "amount": 224727.85,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "LAST FRONTIER MECHANICAL, LLC",
+      "state": "AK",
+      "amount": 224698.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KAKE TRIBAL CORPORATION",
+      "state": "AK",
+      "amount": 224046.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "GINGER, LLC.",
+      "state": "AK",
+      "amount": 223508.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "MCCULLOCH COMMERCIAL FLOORING, INC.",
+      "state": "AK",
+      "amount": 222983.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "KIC LOGISTICS, LLC",
+      "state": "AK",
+      "amount": 222474.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address",
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 2
+    },
+    {
+      "name": "BETHEL NATIVE CORPORATION",
+      "state": "AK",
+      "amount": 222292.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "THE GREAT ALASKAN LUMBERJACK SHOW LLC",
+      "state": "AK",
+      "amount": 220400.0,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "STANDING AGAINST RAPE, INC.",
+      "state": "AK",
+      "amount": 216962.5,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ABC HOLDINGS, LLC",
+      "state": "AK",
+      "amount": 215661.49,
+      "signals": [
+        "Suspicious Business Age \u2014 New/Unknown + High Loan"
+      ],
+      "signal_count": 1
+    },
+    {
+      "name": "ALASKA GLASS & DOOR, LLC",
+      "state": "AK",
+      "amount": 212537.0,
+      "signals": [
+        "PPP Address Mill \u2014 5+ Loans at Same Address"
+      ],
+      "signal_count": 1
+    }
+  ]
+}
