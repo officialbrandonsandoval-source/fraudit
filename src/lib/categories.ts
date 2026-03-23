@@ -8,12 +8,13 @@ export const CATEGORIES: {
   bgColor: string;
   borderColor: string;
   icon: string;
+  hideIfEmpty?: boolean;
 }[] = [
   { key: "all", label: "All", color: "text-zinc-300", bgColor: "bg-white/10", borderColor: "border-white/20", icon: "" },
   { key: "healthcare", label: "Healthcare", color: "text-blue-400", bgColor: "bg-blue-500/15", borderColor: "border-blue-500/30", icon: "⚕" },
-  { key: "va", label: "VA Contractors", color: "text-purple-400", bgColor: "bg-purple-500/15", borderColor: "border-purple-500/30", icon: "★" },
-  { key: "childcare", label: "Child Care", color: "text-amber-400", bgColor: "bg-amber-500/15", borderColor: "border-amber-500/30", icon: "◆" },
-  { key: "ghost", label: "Ghost Operations", color: "text-red-400", bgColor: "bg-red-500/15", borderColor: "border-red-500/30", icon: "◎" },
+  { key: "va", label: "VA Contractors", color: "text-purple-400", bgColor: "bg-purple-500/15", borderColor: "border-purple-500/30", icon: "★", hideIfEmpty: true },
+  { key: "childcare", label: "Child Care", color: "text-amber-400", bgColor: "bg-amber-500/15", borderColor: "border-amber-500/30", icon: "◆", hideIfEmpty: true },
+  { key: "ghost", label: "Ghost Operations", color: "text-red-400", bgColor: "bg-red-500/15", borderColor: "border-red-500/30", icon: "◎", hideIfEmpty: true },
 ];
 
 export const RISK_LEVELS: {

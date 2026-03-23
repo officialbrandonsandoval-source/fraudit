@@ -236,7 +236,7 @@ export default async function SearchPage({
 
       {/* Category tabs */}
       <div className="mb-3 flex flex-wrap gap-2">
-        {CATEGORIES.map((cat) => {
+        {CATEGORIES.filter((cat) => !cat.hideIfEmpty || (categoryCounts[cat.key] ?? 0) > 0).map((cat) => {
           const count = categoryCounts[cat.key] ?? 0;
           const isActive = selectedCategory === cat.key;
           return (
