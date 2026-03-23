@@ -18,6 +18,22 @@ export const metadata: Metadata = {
   title: "Fraudit — Follow the Money",
   description:
     "Real-time fraud risk scores built on public government data. Search any provider, address, or zip code.",
+  metadataBase: new URL("https://usefraudit.com"),
+  openGraph: {
+    title: "Fraudit — Follow the Money",
+    description:
+      "Real-time fraud risk scores built on public government data. Search any provider, address, or zip code.",
+    url: "https://usefraudit.com",
+    siteName: "Fraudit",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fraudit — Follow the Money",
+    description:
+      "Real-time fraud risk scores built on public government data. Search any provider, address, or zip code.",
+  },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,

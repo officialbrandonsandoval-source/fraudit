@@ -28,6 +28,13 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
       title: `${provider.name} — Fraudit Risk Report`,
       description,
       type: "website",
+      url: `https://usefraudit.com/provider/${id}`,
+      siteName: "Fraudit",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${provider.name} — Fraudit Risk Report`,
+      description,
     },
   };
 }
