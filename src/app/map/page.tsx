@@ -48,11 +48,11 @@ interface StateStats {
 }
 
 function getColor(highRisk: number): string {
-  if (highRisk >= 100) return "#ef4444";
-  if (highRisk >= 51) return "rgba(220, 38, 38, 0.7)";
-  if (highRisk >= 11) return "rgba(194, 65, 12, 0.5)";
-  if (highRisk >= 1) return "rgba(120, 53, 15, 0.3)";
-  return "#27272a";
+  if (highRisk >= 100) return "#dc2626";
+  if (highRisk >= 51) return "rgba(220, 38, 38, 0.6)";
+  if (highRisk >= 11) return "rgba(220, 38, 38, 0.3)";
+  if (highRisk >= 1) return "rgba(220, 38, 38, 0.12)";
+  return "rgba(255, 255, 255, 0.03)";
 }
 
 export default function MapPage() {
@@ -86,27 +86,27 @@ export default function MapPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      <div className="mx-auto max-w-6xl px-6 py-10">
-        <h1 className="mb-2 text-3xl font-bold">
-          <span className="text-accent">Fraud Risk by State</span>
+    <div className="min-h-screen bg-[#050505]">
+      <div className="mx-auto max-w-6xl px-6 py-12">
+        <h1 className="mb-2 text-3xl font-semibold tracking-tight">
+          <span className="bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent">Fraud Risk by State</span>
         </h1>
-        <p className="mb-6 text-sm text-zinc-500">
+        <p className="mb-8 text-[13px] text-zinc-600">
           High-risk provider density by state. Click a state to search its providers.
         </p>
 
         {/* Category layer toggles */}
-        <div className="mb-4 flex flex-wrap gap-2">
+        <div className="mb-5 flex flex-wrap gap-2">
           {CATEGORIES.map((cat) => {
             const isActive = selectedCategory === cat.key;
             return (
               <button
                 key={cat.key}
                 onClick={() => setSelectedCategory(cat.key)}
-                className={`rounded-lg px-3 py-1.5 text-sm border transition ${
+                className={`rounded-lg px-3 py-1.5 text-[13px] border transition-all duration-200 ${
                   isActive
                     ? `${cat.bgColor} ${cat.color} ${cat.borderColor} font-medium`
-                    : "border-white/10 text-zinc-500 hover:text-zinc-300 hover:border-white/20"
+                    : "border-white/[0.06] text-zinc-600 hover:text-zinc-300 hover:border-white/[0.12] hover:bg-white/[0.03]"
                 }`}
               >
                 {cat.icon && <span className="mr-1">{cat.icon}</span>}
@@ -115,14 +115,14 @@ export default function MapPage() {
             );
           })}
           {loading && (
-            <span className="self-center text-xs text-zinc-600 ml-2">Loading...</span>
+            <span className="self-center text-[11px] text-zinc-700 ml-2">Loading...</span>
           )}
           {error && (
-            <span className="self-center text-xs text-red-500 ml-2">{error}</span>
+            <span className="self-center text-[11px] text-red-500/80 ml-2">{error}</span>
           )}
         </div>
 
-        <div className="relative rounded-xl border border-white/10 bg-white/5 p-4">
+        <div className="relative glass-card p-6">
           <ComposableMap projection="geoAlbersUsa" className="w-full">
             <Geographies geography={GEO_URL}>
               {({ geographies }) =>
@@ -137,11 +137,11 @@ export default function MapPage() {
                       key={geo.rsmKey}
                       geography={geo}
                       fill={getColor(highRisk)}
-                      stroke="#18181b"
+                      stroke="rgba(255,255,255,0.04)"
                       strokeWidth={0.5}
                       style={{
                         default: { outline: "none" },
-                        hover: { outline: "none", fill: "#ef4444", cursor: "pointer" },
+                        hover: { outline: "none", fill: "#dc2626", cursor: "pointer" },
                         pressed: { outline: "none" },
                       }}
                       onMouseEnter={(e) => {
@@ -168,7 +168,7 @@ export default function MapPage() {
 
           {tooltip && (
             <div
-              className="pointer-events-none fixed z-50 rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 shadow-xl"
+              className="pointer-events-none fixed z-50 rounded-xl border border-white/[0.08] bg-black/90 px-4 py-2.5 text-[13px] text-zinc-200 shadow-2xl backdrop-blur-xl"
               style={{ left: tooltip.x + 12, top: tooltip.y - 10 }}
             >
               {tooltip.content}
@@ -177,26 +177,26 @@ export default function MapPage() {
         </div>
 
         {/* Legend */}
-        <div className="mt-4 flex flex-wrap items-center gap-4 text-xs text-zinc-500">
+        <div className="mt-5 flex flex-wrap items-center gap-4 text-[11px] text-zinc-600">
           <span className="flex items-center gap-1.5">
-            <span className="inline-block h-3 w-3 rounded" style={{ background: "#27272a" }} /> 0
+            <span className="inline-block h-3 w-3 rounded-sm" style={{ background: "rgba(255,255,255,0.03)" }} /> 0
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="inline-block h-3 w-3 rounded" style={{ background: "rgba(120, 53, 15, 0.3)" }} /> 1-10
+            <span className="inline-block h-3 w-3 rounded-sm" style={{ background: "rgba(220, 38, 38, 0.12)" }} /> 1-10
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="inline-block h-3 w-3 rounded" style={{ background: "rgba(194, 65, 12, 0.5)" }} /> 11-50
+            <span className="inline-block h-3 w-3 rounded-sm" style={{ background: "rgba(220, 38, 38, 0.3)" }} /> 11-50
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="inline-block h-3 w-3 rounded" style={{ background: "rgba(220, 38, 38, 0.7)" }} /> 51-99
+            <span className="inline-block h-3 w-3 rounded-sm" style={{ background: "rgba(220, 38, 38, 0.6)" }} /> 51-99
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="inline-block h-3 w-3 rounded" style={{ background: "#ef4444" }} /> 100+
+            <span className="inline-block h-3 w-3 rounded-sm" style={{ background: "#dc2626" }} /> 100+
           </span>
-          <span className="ml-auto">
+          <span className="ml-auto tracking-wide">
             high-risk providers (score &ge; 60)
             {selectedCategory !== "all" && (
-              <span className="ml-1 text-zinc-400">
+              <span className="ml-1 text-zinc-500">
                 · filtered by {CATEGORIES.find(c => c.key === selectedCategory)?.label}
               </span>
             )}

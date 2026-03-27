@@ -14,13 +14,13 @@ export default function Image() {
           flexDirection: "column",
           width: "100%",
           height: "100%",
-          background: "#0a0a0a",
+          background: "#050505",
           padding: "60px",
           fontFamily: "sans-serif",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-          <span style={{ fontSize: 48, fontWeight: 700, color: "#ef4444" }}>Fraudit</span>
+          <span style={{ fontSize: 48, fontWeight: 700, color: "#dc2626" }}>Fraudit</span>
         </div>
         <div
           style={{
@@ -40,7 +40,7 @@ export default function Image() {
         </div>
         <div style={{ display: "flex", justifyContent: "center", gap: "48px", alignItems: "flex-end" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <span style={{ fontSize: 36, fontWeight: 700, color: "#ef4444" }}>$64.7B</span>
+            <span style={{ fontSize: 36, fontWeight: 700, color: "#dc2626" }}>$64.7B</span>
             <span style={{ fontSize: 14, color: "#52525b", marginTop: "4px" }}>Payments Tracked</span>
           </div>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
