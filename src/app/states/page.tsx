@@ -63,11 +63,11 @@ export default async function StatesPage() {
   const maxHighRisk = Math.max(...stats.map((s) => s.highRisk), 1);
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-10">
-      <h1 className="mb-2 text-3xl font-bold">
-        <span className="text-accent">Browse by State</span>
+    <div className="mx-auto max-w-6xl px-6 py-12">
+      <h1 className="mb-2 text-3xl font-semibold tracking-tight">
+        <span className="bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent">Browse by State</span>
       </h1>
-      <p className="mb-8 text-sm text-zinc-500">
+      <p className="mb-10 text-[13px] text-zinc-600">
         {stats.length} states with scored providers. Sorted by high-risk count.
       </p>
 
@@ -76,27 +76,27 @@ export default async function StatesPage() {
           <Link
             key={s.state}
             href={`/search?q=${s.state}`}
-            className="group rounded-xl border border-white/10 bg-white/5 p-4 transition hover:border-accent/40 hover:bg-accent/5"
+            className="group glass-card p-4 transition-all duration-300 hover:border-red-500/20"
           >
             <div className="mb-1 flex items-baseline justify-between">
-              <span className="text-lg font-bold text-zinc-100 group-hover:text-accent transition">
+              <span className="text-lg font-bold text-zinc-200 group-hover:text-accent transition-colors duration-200">
                 {s.state}
               </span>
-              <span className="text-[11px] text-zinc-600">
+              <span className="text-[10px] text-zinc-700 font-medium">
                 {STATE_NAMES[s.state] || s.state}
               </span>
             </div>
 
-            <div className="mb-2 space-y-0.5 text-xs text-zinc-400">
+            <div className="mb-3 space-y-0.5 text-[11px] text-zinc-500">
               <div>{s.totalProviders.toLocaleString()} providers</div>
-              <div>{formatDollars(s.totalPaid)} flagged</div>
-              <div className="text-red-400 font-medium">{s.highRisk} high-risk</div>
+              <div className="font-mono">{formatDollars(s.totalPaid)} flagged</div>
+              <div className="text-red-400/80 font-medium">{s.highRisk} high-risk</div>
             </div>
 
             {/* Heat bar */}
-            <div className="h-1.5 w-full rounded-full bg-white/10">
+            <div className="h-[3px] w-full rounded-full bg-white/[0.06]">
               <div
-                className="h-1.5 rounded-full bg-red-500 transition-all"
+                className="h-[3px] rounded-full bg-gradient-to-r from-red-600 to-red-400 transition-all duration-500"
                 style={{ width: `${(s.highRisk / maxHighRisk) * 100}%` }}
               />
             </div>

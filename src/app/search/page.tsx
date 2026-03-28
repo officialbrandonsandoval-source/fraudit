@@ -90,12 +90,12 @@ function capitalize(s: string) {
 function RiskBadge({ score }: { score: number }) {
   const color =
     score >= 60
-      ? "bg-red-500/20 text-red-400 border-red-500/30"
+      ? "bg-red-500/10 text-red-400 border-red-500/20 shadow-[0_0_8px_rgba(220,38,38,0.1)]"
       : score >= 30
-        ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
-        : "bg-green-500/20 text-green-400 border-green-500/30";
+        ? "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"
+        : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
   return (
-    <span className={`rounded-full border px-3 py-1 text-sm font-bold ${color}`}>
+    <span className={`rounded-full border px-3 py-1 text-[13px] font-bold tracking-wide ${color}`}>
       {score}
     </span>
   );
@@ -193,23 +193,23 @@ export default async function SearchPage({
       : categoryFiltered.filter((p) => matchesRisk(p.riskScore, selectedRisk));
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-10">
+    <div className="mx-auto max-w-4xl px-6 py-12">
       {/* Back + search form inline */}
       <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <Link href="/" className="mb-2 inline-block text-sm text-zinc-500 hover:text-zinc-300 transition">
+          <Link href="/" className="mb-2 inline-block text-[13px] text-zinc-600 hover:text-zinc-300 transition-colors duration-200">
             ← Back to Fraudit
           </Link>
-          <h2 className="text-2xl font-bold">
+          <h2 className="text-2xl font-semibold tracking-tight">
             {displayLabel}
           </h2>
-          <p className="mt-1 text-sm text-zinc-500">
+          <p className="mt-1 text-[13px] text-zinc-600">
             {providers.length} provider{providers.length !== 1 && "s"} found
             {parts.state && !parts.city && (
-              <span className="ml-1 text-zinc-600">· Showing all providers in {parts.state}</span>
+              <span className="ml-1 text-zinc-700">· Showing all providers in {parts.state}</span>
             )}
             {parts.city && parts.state && (
-              <span className="ml-1 text-zinc-600">· Filtered by city + state</span>
+              <span className="ml-1 text-zinc-700">· Filtered by city + state</span>
             )}
           </p>
         </div>
@@ -223,11 +223,11 @@ export default async function SearchPage({
             name="q"
             defaultValue={query}
             placeholder="Search again..."
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-3 text-base text-white placeholder-zinc-600 outline-none transition focus:border-accent focus:ring-1 focus:ring-accent"
+            className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.03] px-6 py-3.5 text-base text-white placeholder-zinc-700 outline-none transition-all duration-300 backdrop-blur-xl focus:border-red-500/40 focus:bg-white/[0.05]"
           />
           <button
             type="submit"
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-xl bg-gradient-to-b from-red-500 to-red-700 px-4 py-2 text-[13px] font-medium text-white shadow-lg shadow-red-500/20 transition-all duration-200 hover:shadow-red-500/30 hover:brightness-110"
           >
             Search
           </button>
@@ -243,15 +243,15 @@ export default async function SearchPage({
             <Link
               key={cat.key}
               href={buildFilterUrl(query, cat.key, selectedRisk)}
-              className={`rounded-lg px-3 py-1.5 text-sm border transition ${
+              className={`rounded-lg px-3 py-1.5 text-[13px] border transition-all duration-200 ${
                 isActive
                   ? `${cat.bgColor} ${cat.color} ${cat.borderColor} font-medium`
-                  : "border-white/10 text-zinc-500 hover:text-zinc-300 hover:border-white/20"
+                  : "border-white/[0.06] text-zinc-600 hover:text-zinc-300 hover:border-white/[0.12] hover:bg-white/[0.03]"
               }`}
             >
               {cat.icon && <span className="mr-1">{cat.icon}</span>}
               {cat.label}
-              <span className={`ml-1.5 text-xs ${isActive ? "opacity-80" : "opacity-50"}`}>
+              <span className={`ml-1.5 text-[11px] ${isActive ? "opacity-80" : "opacity-40"}`}>
                 {count}
               </span>
             </Link>
@@ -268,14 +268,14 @@ export default async function SearchPage({
             <Link
               key={level.key}
               href={buildFilterUrl(query, selectedCategory, level.key)}
-              className={`rounded-full px-3 py-1 text-xs border transition ${
+              className={`rounded-full px-3 py-1 text-[11px] border transition-all duration-200 ${
                 isActive
-                  ? "bg-white/10 text-zinc-200 border-white/20 font-medium"
-                  : "border-white/10 text-zinc-600 hover:text-zinc-400 hover:border-white/15"
+                  ? "bg-white/[0.06] text-zinc-200 border-white/[0.12] font-medium"
+                  : "border-white/[0.06] text-zinc-700 hover:text-zinc-400 hover:border-white/[0.1]"
               }`}
             >
               {level.label}
-              <span className={`ml-1 ${isActive ? "opacity-80" : "opacity-50"}`}>
+              <span className={`ml-1 ${isActive ? "opacity-80" : "opacity-40"}`}>
                 {count}
               </span>
             </Link>
@@ -284,9 +284,9 @@ export default async function SearchPage({
       </div>
 
       {providers.length === 0 ? (
-        <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-12 text-center">
+        <div className="glass-card px-6 py-14 text-center">
           <p className="text-zinc-400 mb-2">No providers matched &ldquo;{query}&rdquo;</p>
-          <p className="text-zinc-600 text-sm">
+          <p className="text-zinc-700 text-[13px]">
             Try a city name, state abbreviation, zip code, or provider name.
           </p>
         </div>
@@ -295,7 +295,7 @@ export default async function SearchPage({
           {providers.slice(0, 100).map((p) => (
             <div
               key={p.id}
-              className="rounded-xl border border-white/10 bg-white/5 p-6 hover:border-white/20 transition"
+              className="glass-card p-6 transition-all duration-300"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0 flex-1">
@@ -304,33 +304,33 @@ export default async function SearchPage({
                     <RiskBadge score={p.riskScore} />
                     <CategoryBadge category={primaryCategory(p)} />
                   </div>
-                  <p className="text-sm text-zinc-400">
+                  <p className="text-[13px] text-zinc-500">
                     {p.address}, {p.city}, {p.state} {p.zip}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {p.programs.map((prog) => (
                       <span
                         key={prog}
-                        className="rounded bg-white/10 px-2 py-0.5 text-xs text-zinc-300"
+                        className="rounded-md bg-white/[0.05] px-2 py-0.5 text-[11px] text-zinc-400 font-medium"
                       >
                         {prog}
                       </span>
                     ))}
                   </div>
-                  <p className="mt-2 text-sm text-zinc-400">
+                  <p className="mt-2 text-[13px] text-zinc-500">
                     Total received:{" "}
-                    <span className="font-medium text-zinc-200">
+                    <span className="font-medium text-zinc-300 font-mono">
                       ${p.totalPaid.toLocaleString()}
                     </span>
                   </p>
                   {p.anomalies.length > 0 && (
-                    <ul className="mt-3 space-y-1">
+                    <ul className="mt-3 space-y-1.5">
                       {p.anomalies.map((a, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-2 text-sm text-red-400"
+                          className="flex items-start gap-2 text-[13px] text-red-400/80"
                         >
-                          <span className="mt-0.5 text-red-500">&#9888;</span>
+                          <span className="mt-0.5 text-red-500/60">&#9888;</span>
                           {a}
                         </li>
                       ))}
@@ -339,7 +339,7 @@ export default async function SearchPage({
                 </div>
                 <Link
                   href={`/provider/${p.id}`}
-                  className="shrink-0 rounded-lg border border-white/10 px-4 py-2 text-sm font-medium transition hover:bg-white/5"
+                  className="shrink-0 rounded-xl border border-white/[0.06] px-4 py-2 text-[13px] font-medium text-zinc-500 transition-all duration-200 hover:bg-white/[0.06] hover:text-zinc-200 hover:border-white/[0.12]"
                 >
                   View Report →
                 </Link>

@@ -56,46 +56,46 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <meta name="theme-color" content="#ef4444" />
+        <meta name="theme-color" content="#dc2626" />
         <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
-        <nav className="border-b border-white/10 px-4 py-3 sm:px-6 sm:py-4">
+        <nav className="glass-nav sticky top-0 z-50 px-4 py-3 sm:px-6 sm:py-4">
           <div className="mx-auto flex max-w-6xl items-center justify-between">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="text-xl font-bold text-accent sm:text-2xl">Fraudit</span>
-              <span className="hidden text-sm text-zinc-500 sm:inline">
+            <Link href="/" className="flex items-center gap-3 group">
+              <span className="text-xl font-bold tracking-tight text-accent transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(220,38,38,0.4)] sm:text-2xl">Fraudit</span>
+              <span className="hidden text-[13px] font-medium text-zinc-600 sm:inline">
                 Follow the money
               </span>
             </Link>
-            <div className="flex items-center gap-1 text-sm">
-              <Link href="/map" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
+            <div className="flex items-center gap-0.5 text-[13px] font-medium">
+              <Link href="/map" className="rounded-lg px-2.5 py-1.5 text-zinc-500 transition-all duration-200 hover:bg-white/[0.06] hover:text-zinc-200 sm:px-3">
                 Map
               </Link>
-              <Link href="/states" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
+              <Link href="/states" className="rounded-lg px-2.5 py-1.5 text-zinc-500 transition-all duration-200 hover:bg-white/[0.06] hover:text-zinc-200 sm:px-3">
                 States
               </Link>
-              <Link href="/top50" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
+              <Link href="/top50" className="rounded-lg px-2.5 py-1.5 text-zinc-500 transition-all duration-200 hover:bg-white/[0.06] hover:text-zinc-200 sm:px-3">
                 Top 50
               </Link>
-              <Link href="/reports" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
+              <Link href="/reports" className="rounded-lg px-2.5 py-1.5 text-zinc-500 transition-all duration-200 hover:bg-white/[0.06] hover:text-zinc-200 sm:px-3">
                 Reports
               </Link>
-              <Link href="/contact" className="rounded-lg px-2 py-1.5 text-zinc-400 transition hover:bg-white/5 hover:text-white sm:px-3">
+              <Link href="/contact" className="rounded-lg px-2.5 py-1.5 text-zinc-500 transition-all duration-200 hover:bg-white/[0.06] hover:text-zinc-200 sm:px-3">
                 Tip
               </Link>
             </div>
           </div>
         </nav>
         <main className="flex-1">{children}</main>
-        <footer className="border-t border-white/10 px-6 py-6 text-center text-xs text-zinc-600">
-          <div className="mb-2">
+        <footer className="border-t border-white/[0.04] px-6 py-8 text-center text-xs">
+          <div className="mb-3 text-zinc-700">
             Built on public data. Statistical flags only — not proof of
             wrongdoing.
           </div>
-          <div className="flex items-center justify-center gap-4">
-            <Link href="/about" className="text-zinc-500 transition hover:text-accent">
+          <div className="flex items-center justify-center gap-6">
+            <Link href="/about" className="text-zinc-600 transition-all duration-200 hover:text-accent">
               About
             </Link>
-            <Link href="/improve" className="text-zinc-500 transition hover:text-accent">
+            <Link href="/improve" className="text-zinc-600 transition-all duration-200 hover:text-accent">
               Suggest Improvement
             </Link>
           </div>

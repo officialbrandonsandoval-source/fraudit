@@ -73,12 +73,12 @@ function formatDollars(amount: number): string {
 function RiskBadge({ score }: { score: number }) {
   const color =
     score >= 60
-      ? "bg-red-500/20 text-red-400 border-red-500/30"
+      ? "bg-red-500/10 text-red-400 border-red-500/20 shadow-[0_0_8px_rgba(220,38,38,0.1)]"
       : score >= 30
-        ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
-        : "bg-green-500/20 text-green-400 border-green-500/30";
+        ? "bg-yellow-500/10 text-yellow-400 border-yellow-500/20"
+        : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
   return (
-    <span className={`rounded-full border px-2.5 py-0.5 text-xs font-bold ${color}`}>
+    <span className={`rounded-full border px-2.5 py-0.5 text-[11px] font-bold tracking-wide ${color}`}>
       {score}
     </span>
   );
@@ -86,10 +86,10 @@ function RiskBadge({ score }: { score: number }) {
 
 function RiskBar({ score }: { score: number }) {
   const pct = Math.min(score, 100);
-  const color = score >= 60 ? "bg-red-500" : score >= 30 ? "bg-yellow-500" : "bg-green-500";
+  const color = score >= 60 ? "bg-gradient-to-r from-red-600 to-red-400" : score >= 30 ? "bg-gradient-to-r from-yellow-600 to-yellow-400" : "bg-gradient-to-r from-emerald-600 to-emerald-400";
   return (
-    <div className="h-1 w-12 rounded-full bg-white/10">
-      <div className={`h-1 rounded-full ${color} transition-all`} style={{ width: `${pct}%` }} />
+    <div className="h-[3px] w-12 rounded-full bg-white/[0.06]">
+      <div className={`h-[3px] rounded-full ${color} transition-all duration-500`} style={{ width: `${pct}%` }} />
     </div>
   );
 }
@@ -99,7 +99,7 @@ function SmallCategoryBadge({ category }: { category: CategoryKey }) {
   if (category === "all") return null;
   return (
     <span
-      className={`inline-flex items-center rounded border px-1.5 py-0 text-[10px] font-medium ${config.bgColor} ${config.color} ${config.borderColor}`}
+      className={`inline-flex items-center rounded-md border px-1.5 py-0.5 text-[10px] font-medium tracking-wide ${config.bgColor} ${config.color} ${config.borderColor}`}
     >
       <span className="mr-0.5">{config.icon}</span>
       {config.label}
@@ -171,81 +171,83 @@ export default function HomeClient({
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-6 py-16">
+    <div className="mx-auto max-w-5xl px-6 py-20">
 
       {/* ── Hero ── */}
-      <div className="mb-10 text-center">
-        <h1 className="mb-3 text-5xl font-bold tracking-tight sm:text-6xl">
-          <span className="text-accent">Fraudit</span>
+      <div className="relative mb-14 text-center">
+        {/* Subtle radial glow behind hero */}
+        <div className="pointer-events-none absolute inset-0 -top-20 mx-auto h-[300px] w-[600px] rounded-full bg-red-500/[0.04] blur-[100px]" />
+        <h1 className="relative mb-4 text-5xl font-bold tracking-tight sm:text-6xl">
+          <span className="bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent">Fraudit</span>
         </h1>
-        <p className="mb-6 text-lg text-zinc-400">Follow the money.</p>
+        <p className="relative mb-8 text-lg font-medium text-zinc-500">Follow the money.</p>
 
         {/* MASSIVE LIVE TOTAL */}
-        <div className="mb-2">
+        <div className="relative mb-2">
           <div className="inline-block">
-            <p className="mb-1 text-xs uppercase tracking-widest text-zinc-600">Total Medicare Payments Tracked</p>
+            <p className="mb-2 text-[11px] uppercase tracking-[0.2em] text-zinc-600 font-medium">Total Medicare Payments Tracked</p>
             <div className="text-6xl font-black tabular-nums tracking-tight text-white sm:text-7xl md:text-8xl">
               {displayStats.allPaid > 0 ? formatDollars(displayStats.allPaid) : (
-                <span className="text-zinc-700">$—</span>
+                <span className="text-zinc-800">$—</span>
               )}
             </div>
-            <p className="mt-2 text-sm text-zinc-600">
+            <p className="mt-3 text-[13px] text-zinc-600">
               across{" "}
               <span className="text-zinc-400 font-medium">
                 {displayStats.providers > 0 ? displayStats.providers.toLocaleString() : "—"} providers
               </span>
               {" · "}
-              <span className="text-red-400 font-medium">
+              <span className="text-red-400/90 font-medium">
                 {displayStats.flagged > 0 ? formatDollars(displayStats.flagged) : "—"} flagged high-risk
               </span>
               {" · "}
-              <span className="text-zinc-500">
+              <span className="text-zinc-600">
                 {displayStats.tips > 0 ? displayStats.tips.toLocaleString() : "0"} tips submitted
               </span>
             </p>
           </div>
         </div>
 
-        <p className="mx-auto mt-6 max-w-xl text-sm text-zinc-600">
+        <p className="relative mx-auto mt-8 max-w-xl text-[13px] leading-relaxed text-zinc-600">
           Real-time fraud risk scores built on public government data —
           search any provider, address, city, state, or zip code.
         </p>
       </div>
 
       {/* ── Search Bar ── */}
-      <form onSubmit={handleSearch} className="mb-4 w-full">
+      <form onSubmit={handleSearch} className="mb-6 w-full">
         <div className="relative">
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Los Angeles CA · Phoenix, Arizona · 90210 · provider name · address..."
-            className="w-full rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-lg text-white placeholder-zinc-600 outline-none transition focus:border-accent focus:ring-1 focus:ring-accent"
+            className="w-full rounded-2xl border border-white/[0.08] bg-white/[0.03] px-6 py-4 text-lg text-white placeholder-zinc-700 outline-none transition-all duration-300 backdrop-blur-xl focus:border-red-500/40 focus:bg-white/[0.05]"
           />
           <button
             type="submit"
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg bg-accent px-5 py-2 font-medium text-white transition hover:bg-red-600"
+            className="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-xl bg-gradient-to-b from-red-500 to-red-700 px-5 py-2 font-medium text-white shadow-lg shadow-red-500/20 transition-all duration-200 hover:shadow-red-500/30 hover:brightness-110 active:scale-[0.98]"
           >
             Search
           </button>
         </div>
-        <p className="mt-2 text-center text-xs text-zinc-600">
+        <p className="mt-3 text-center text-[11px] tracking-wide text-zinc-700">
           Try: &quot;California&quot; · &quot;Los Angeles CA&quot; · &quot;San Diego, California&quot; · &quot;90210&quot; · &quot;Provider Name&quot; · any street address
         </p>
       </form>
 
       {/* ── Top 50 Highest Flagged ── */}
-      <div className="mb-20">
-        <div className="mb-4 flex items-center gap-3">
+      <div className="mb-24">
+        <div className="mb-5 flex items-center gap-3">
           <span className="text-accent text-lg">⚑</span>
-          <h2 className="text-lg font-bold tracking-wide">Top 50 Highest-Flagged Providers</h2>
-          <span className="rounded-full bg-red-500/15 px-2 py-0.5 text-xs text-red-400 border border-red-500/20">
+          <h2 className="text-lg font-semibold tracking-tight">Top 50 Highest-Flagged Providers</h2>
+          <span className="rounded-full bg-red-500/10 px-2.5 py-0.5 text-[11px] font-medium text-red-400 border border-red-500/15 shadow-[0_0_8px_rgba(220,38,38,0.08)]">
             Live Rankings
           </span>
         </div>
 
         {/* Category tabs */}
-        <div className="mb-4 flex flex-wrap gap-2">
+        <div className="mb-5 flex flex-wrap gap-2">
           {CATEGORIES.filter((cat) => !cat.hideIfEmpty || (categoryCounts[cat.key] ?? 0) > 0).map((cat) => {
             const count = categoryCounts[cat.key] ?? 0;
             const isActive = selectedCategory === cat.key;
@@ -253,15 +255,15 @@ export default function HomeClient({
               <button
                 key={cat.key}
                 onClick={() => setSelectedCategory(cat.key)}
-                className={`rounded-lg px-3 py-1.5 text-sm border transition ${
+                className={`rounded-lg px-3 py-1.5 text-[13px] border transition-all duration-200 ${
                   isActive
                     ? `${cat.bgColor} ${cat.color} ${cat.borderColor} font-medium`
-                    : "border-white/10 text-zinc-500 hover:text-zinc-300 hover:border-white/20"
+                    : "border-white/[0.06] text-zinc-600 hover:text-zinc-300 hover:border-white/[0.12] hover:bg-white/[0.03]"
                 }`}
               >
                 {cat.icon && <span className="mr-1">{cat.icon}</span>}
                 {cat.label}
-                <span className={`ml-1.5 text-xs ${isActive ? "opacity-80" : "opacity-50"}`}>
+                <span className={`ml-1.5 text-[11px] ${isActive ? "opacity-80" : "opacity-40"}`}>
                   {count}
                 </span>
               </button>
@@ -270,60 +272,60 @@ export default function HomeClient({
         </div>
 
         {filteredTop50.length === 0 ? (
-          <div className="rounded-xl border border-white/10 bg-white/5 px-6 py-8 text-center text-zinc-500 text-sm">
+          <div className="glass-card px-6 py-10 text-center text-zinc-600 text-[13px]">
             {initialTop50.length === 0
               ? "Rankings will appear as data is ingested."
               : "No providers match this category filter."}
           </div>
         ) : (
-          <div className="overflow-hidden rounded-xl border border-white/10">
-            <table className="w-full text-sm">
+          <div className="overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+            <table className="w-full text-[13px]">
               <thead>
-                <tr className="border-b border-white/10 bg-white/5 text-left text-xs text-zinc-500">
-                  <th className="px-4 py-3 w-8">#</th>
-                  <th className="px-4 py-3">Provider</th>
-                  <th className="px-4 py-3 hidden sm:table-cell">Location</th>
-                  <th className="px-4 py-3 hidden md:table-cell">Total Received</th>
-                  <th className="px-4 py-3">Risk</th>
-                  <th className="px-4 py-3 w-20"></th>
+                <tr className="border-b border-white/[0.06] bg-white/[0.03] text-left text-[11px] uppercase tracking-wider text-zinc-600">
+                  <th className="px-4 py-3.5 w-8 font-medium">#</th>
+                  <th className="px-4 py-3.5 font-medium">Provider</th>
+                  <th className="px-4 py-3.5 hidden sm:table-cell font-medium">Location</th>
+                  <th className="px-4 py-3.5 hidden md:table-cell font-medium">Total Received</th>
+                  <th className="px-4 py-3.5 font-medium">Risk</th>
+                  <th className="px-4 py-3.5 w-20"></th>
                 </tr>
               </thead>
               <tbody>
                 {filteredTop50.map((p, i) => (
                   <tr
                     key={p.id}
-                    className="border-b border-white/5 transition hover:bg-white/5 last:border-0"
+                    className="border-b border-white/[0.03] transition-all duration-200 hover:bg-white/[0.04] last:border-0"
                   >
-                    <td className="px-4 py-3 text-zinc-600 font-mono text-xs">{i + 1}</td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3.5 text-zinc-700 font-mono text-[11px]">{i + 1}</td>
+                    <td className="px-4 py-3.5">
                       <div className="flex items-center gap-2">
-                        <span className="font-medium text-zinc-100 truncate max-w-[160px] sm:max-w-xs">
+                        <span className="font-medium text-zinc-200 truncate max-w-[160px] sm:max-w-xs">
                           {p.name}
                         </span>
                         <SmallCategoryBadge category={primaryCategory(p)} />
                       </div>
                       {p.anomalies.length > 0 && (
-                        <div className="text-xs text-red-400/70 mt-0.5 truncate max-w-[200px] sm:max-w-xs">
+                        <div className="text-[11px] text-red-400/60 mt-0.5 truncate max-w-[200px] sm:max-w-xs">
                           {p.anomalies[0]}
                         </div>
                       )}
                     </td>
-                    <td className="px-4 py-3 text-zinc-400 hidden sm:table-cell whitespace-nowrap">
+                    <td className="px-4 py-3.5 text-zinc-500 hidden sm:table-cell whitespace-nowrap">
                       {p.city}, {p.state}
                     </td>
-                    <td className="px-4 py-3 text-zinc-300 hidden md:table-cell whitespace-nowrap">
+                    <td className="px-4 py-3.5 text-zinc-400 hidden md:table-cell whitespace-nowrap font-mono text-[12px]">
                       ${p.totalPaid.toLocaleString()}
                     </td>
-                    <td className="px-4 py-3">
-                      <div className="flex flex-col gap-1">
+                    <td className="px-4 py-3.5">
+                      <div className="flex flex-col gap-1.5">
                         <RiskBadge score={p.riskScore} />
                         <RiskBar score={p.riskScore} />
                       </div>
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3.5">
                       <Link
                         href={`/provider/${p.id}`}
-                        className="rounded border border-white/10 px-3 py-1 text-xs text-zinc-400 hover:bg-white/5 hover:text-white transition whitespace-nowrap"
+                        className="rounded-lg border border-white/[0.06] px-3 py-1.5 text-[11px] font-medium text-zinc-500 hover:bg-white/[0.06] hover:text-zinc-200 hover:border-white/[0.12] transition-all duration-200 whitespace-nowrap"
                       >
                         View →
                       </Link>
@@ -337,22 +339,22 @@ export default function HomeClient({
       </div>
 
       {/* ── Preamble / Mission ── */}
-      <div className="border-t border-white/10 pt-16">
+      <div className="border-t border-white/[0.04] pt-20">
 
         {/* Origin story */}
-        <div className="mb-12">
-          <h2 className="mb-6 text-2xl font-bold tracking-tight">
+        <div className="mb-16">
+          <h2 className="mb-8 text-2xl font-semibold tracking-tight">
             Why This Exists
           </h2>
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-              <p className="text-zinc-300 leading-relaxed text-sm">
+            <div className="glass-card p-7">
+              <p className="text-zinc-300 leading-relaxed text-[13px]">
                 In early 2026, independent journalist{" "}
                 <a
                   href="https://www.youtube.com/@nickshirley"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-accent hover:underline font-medium"
+                  className="text-accent hover:underline font-medium transition-colors duration-200"
                 >
                   Nick Shirley
                 </a>{" "}
@@ -361,7 +363,7 @@ export default function HomeClient({
                 in California — ghost daycares, phantom hospice patients, and addresses billing millions
                 with no building in sight. He did it the hard way: driving to addresses with a camera.
               </p>
-              <p className="mt-4 text-zinc-400 leading-relaxed text-sm">
+              <p className="mt-4 text-zinc-500 leading-relaxed text-[13px]">
                 His work was so compelling he was called to testify before Congress. But the tool he needed
                 to do that investigation in <em>seconds</em> instead of months didn&apos;t exist. So we built it.
               </p>
@@ -369,7 +371,7 @@ export default function HomeClient({
                 href="https://www.youtube.com/@nickshirley"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/10 px-4 py-2 text-sm text-accent hover:bg-accent/20 transition"
+                className="mt-5 inline-flex items-center gap-2 rounded-xl border border-red-500/20 bg-red-500/[0.07] px-4 py-2.5 text-[13px] font-medium text-red-400 hover:bg-red-500/[0.12] hover:border-red-500/30 transition-all duration-200"
               >
                 <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
@@ -378,23 +380,23 @@ export default function HomeClient({
               </a>
             </div>
 
-            <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-              <h3 className="mb-3 font-semibold text-zinc-200">What Fraudit Does</h3>
-              <ul className="space-y-3 text-sm text-zinc-400">
+            <div className="glass-card p-7">
+              <h3 className="mb-4 font-semibold text-zinc-200">What Fraudit Does</h3>
+              <ul className="space-y-4 text-[13px] text-zinc-500">
                 <li className="flex gap-3">
-                  <span className="text-accent mt-0.5 shrink-0">▸</span>
+                  <span className="text-red-400/80 mt-0.5 shrink-0">▸</span>
                   <span>Ingests all public CMS Medicare/Medicaid payment data, USASpending.gov, IRS 990s, state registries, and county assessor records</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-accent mt-0.5 shrink-0">▸</span>
+                  <span className="text-red-400/80 mt-0.5 shrink-0">▸</span>
                   <span>Scores every provider 0–100 based on statistical anomalies — billing outliers, enrollment spikes, cross-owner links, license age vs. volume</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-accent mt-0.5 shrink-0">▸</span>
+                  <span className="text-red-400/80 mt-0.5 shrink-0">▸</span>
                   <span>Generates shareable, journalist-friendly reports with a single URL — so a finding that took Nick months takes 3 seconds</span>
                 </li>
                 <li className="flex gap-3">
-                  <span className="text-accent mt-0.5 shrink-0">▸</span>
+                  <span className="text-red-400/80 mt-0.5 shrink-0">▸</span>
                   <span>Accepts anonymous public tips on any provider — crowdsourced ground truth that improves the model over time</span>
                 </li>
               </ul>
@@ -403,9 +405,9 @@ export default function HomeClient({
         </div>
 
         {/* Journalist tools */}
-        <div className="mb-12">
-          <h2 className="mb-2 text-2xl font-bold tracking-tight">Built for Journalists</h2>
-          <p className="mb-6 text-zinc-500 text-sm">
+        <div className="mb-16">
+          <h2 className="mb-2 text-2xl font-semibold tracking-tight">Built for Journalists</h2>
+          <p className="mb-8 text-zinc-600 text-[13px]">
             We build for the investigators who do the work. These journalists have used public data to expose
             what governments don&apos;t want found — and every confirmed case they publish becomes training data
             that makes Fraudit more accurate.
@@ -439,56 +441,56 @@ export default function HomeClient({
                 href={j.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group rounded-xl border border-white/10 bg-white/5 p-5 hover:border-accent/40 hover:bg-accent/5 transition"
+                className="group glass-card p-5 hover:border-red-500/20 transition-all duration-300"
               >
-                <div className="mb-1 flex items-start justify-between gap-2">
-                  <span className="font-semibold text-zinc-100 group-hover:text-accent transition">{j.name}</span>
-                  <span className="text-[10px] text-zinc-600 bg-white/5 rounded px-2 py-0.5 shrink-0 mt-0.5">{j.tag}</span>
+                <div className="mb-2 flex items-start justify-between gap-2">
+                  <span className="font-semibold text-zinc-200 group-hover:text-accent transition-colors duration-200">{j.name}</span>
+                  <span className="text-[10px] text-zinc-700 bg-white/[0.04] rounded-md px-2 py-0.5 shrink-0 mt-0.5 font-medium">{j.tag}</span>
                 </div>
-                <p className="text-xs text-zinc-500 leading-relaxed">{j.description}</p>
-                <span className="mt-3 inline-block text-xs text-accent/70 group-hover:text-accent transition">
+                <p className="text-[12px] text-zinc-600 leading-relaxed">{j.description}</p>
+                <span className="mt-3 inline-block text-[12px] text-red-400/60 group-hover:text-red-400 transition-colors duration-200">
                   {j.handle} →
                 </span>
               </a>
             ))}
           </div>
-          <p className="mt-4 text-xs text-zinc-600">
+          <p className="mt-5 text-[12px] text-zinc-700">
             Are you an investigative journalist using public data to expose government fraud?{" "}
-            <Link href="/contact" className="text-accent hover:underline">
+            <Link href="/contact" className="text-accent hover:underline transition-colors duration-200">
               We want to support your work.
             </Link>
           </p>
         </div>
 
         {/* The problem */}
-        <div className="mb-12 rounded-xl border border-white/10 bg-white/5 p-8">
-          <h2 className="mb-4 text-xl font-bold">The Problem We&apos;re Solving</h2>
-          <div className="grid gap-6 md:grid-cols-3 text-sm">
+        <div className="mb-16 glass-card p-8">
+          <h2 className="mb-6 text-xl font-semibold">The Problem We&apos;re Solving</h2>
+          <div className="grid gap-8 md:grid-cols-3 text-[13px]">
             <div>
-              <div className="mb-2 text-3xl font-bold text-accent">$100B+</div>
-              <p className="text-zinc-400">Estimated annual Medicare and Medicaid fraud in the US, per CMS and HHS OIG estimates</p>
+              <div className="mb-2 text-3xl font-bold bg-gradient-to-b from-red-400 to-red-600 bg-clip-text text-transparent">$100B+</div>
+              <p className="text-zinc-500">Estimated annual Medicare and Medicaid fraud in the US, per CMS and HHS OIG estimates</p>
             </div>
             <div>
-              <div className="mb-2 text-3xl font-bold text-zinc-200">40 min</div>
-              <p className="text-zinc-400">The length of Nick Shirley&apos;s investigation video — representing months of manual driving and cross-referencing</p>
+              <div className="mb-2 text-3xl font-bold text-zinc-300">40 min</div>
+              <p className="text-zinc-500">The length of Nick Shirley&apos;s investigation video — representing months of manual driving and cross-referencing</p>
             </div>
             <div>
-              <div className="mb-2 text-3xl font-bold text-green-400">3 sec</div>
-              <p className="text-zinc-400">How long a Fraudit search takes to surface the same anomalies — built entirely on data that was already public</p>
+              <div className="mb-2 text-3xl font-bold text-emerald-400">3 sec</div>
+              <p className="text-zinc-500">How long a Fraudit search takes to surface the same anomalies — built entirely on data that was already public</p>
             </div>
           </div>
-          <p className="mt-6 text-zinc-500 text-sm leading-relaxed">
+          <p className="mt-8 text-zinc-600 text-[13px] leading-relaxed">
             Every data source Fraudit uses is publicly available. CMS publishes provider payment data.
             USASpending.gov publishes every federal contract and grant. IRS 990s are public record.
             State business registries are online. County assessor data is open.
-            <strong className="text-zinc-300"> The information was always there — it just needed to be assembled.</strong>
+            <strong className="text-zinc-400"> The information was always there — it just needed to be assembled.</strong>
           </p>
         </div>
 
         {/* Disclaimer */}
-        <div className="rounded-xl border border-yellow-500/20 bg-yellow-500/5 p-5">
-          <p className="text-xs text-yellow-400/80 leading-relaxed">
-            <strong className="text-yellow-400">Important:</strong>{" "}
+        <div className="rounded-2xl border border-amber-500/10 bg-amber-500/[0.03] p-6 backdrop-blur-xl">
+          <p className="text-[12px] text-amber-400/70 leading-relaxed">
+            <strong className="text-amber-400/90">Important:</strong>{" "}
             Fraudit surfaces statistical anomalies from public data. A high risk score means a provider&apos;s
             billing patterns deviate significantly from peers — it is <em>not</em> proof of fraud, wrongdoing,
             or illegal activity. All findings should be independently verified before publication or action.

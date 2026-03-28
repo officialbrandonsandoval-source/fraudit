@@ -10,11 +10,11 @@ export const CATEGORIES: {
   icon: string;
   hideIfEmpty?: boolean;
 }[] = [
-  { key: "all", label: "All", color: "text-zinc-300", bgColor: "bg-white/10", borderColor: "border-white/20", icon: "" },
-  { key: "healthcare", label: "Healthcare", color: "text-blue-400", bgColor: "bg-blue-500/15", borderColor: "border-blue-500/30", icon: "⚕" },
-  { key: "va", label: "VA Contractors", color: "text-purple-400", bgColor: "bg-purple-500/15", borderColor: "border-purple-500/30", icon: "★", hideIfEmpty: true },
-  { key: "childcare", label: "Child Care", color: "text-amber-400", bgColor: "bg-amber-500/15", borderColor: "border-amber-500/30", icon: "◆", hideIfEmpty: true },
-  { key: "ghost", label: "Ghost Operations", color: "text-red-400", bgColor: "bg-red-500/15", borderColor: "border-red-500/30", icon: "◎", hideIfEmpty: true },
+  { key: "all", label: "All", color: "text-zinc-300", bgColor: "bg-white/[0.06]", borderColor: "border-white/[0.1]", icon: "" },
+  { key: "healthcare", label: "Healthcare", color: "text-blue-400", bgColor: "bg-blue-500/[0.08]", borderColor: "border-blue-500/20", icon: "⚕" },
+  { key: "va", label: "VA Contractors", color: "text-purple-400", bgColor: "bg-purple-500/[0.08]", borderColor: "border-purple-500/20", icon: "★", hideIfEmpty: true },
+  { key: "childcare", label: "Child Care", color: "text-amber-400", bgColor: "bg-amber-500/[0.08]", borderColor: "border-amber-500/20", icon: "◆", hideIfEmpty: true },
+  { key: "ghost", label: "Ghost Operations", color: "text-red-400", bgColor: "bg-red-500/[0.08]", borderColor: "border-red-500/20", icon: "◎", hideIfEmpty: true },
 ];
 
 export const RISK_LEVELS: {
