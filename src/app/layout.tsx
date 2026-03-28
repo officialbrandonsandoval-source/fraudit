@@ -79,6 +79,12 @@ export default function RootLayout({
               <Link href="/reports" className="rounded-lg px-2.5 py-1.5 text-zinc-500 transition-all duration-200 hover:bg-white/[0.06] hover:text-zinc-200 sm:px-3">
                 Reports
               </Link>
+              <Link href="/watchlist" className="rounded-lg px-2.5 py-1.5 text-zinc-500 transition-all duration-200 hover:bg-white/[0.06] hover:text-zinc-200 sm:px-3">
+                Watchlists
+              </Link>
+              <Link href="/pricing" className="rounded-lg px-2.5 py-1.5 text-accent font-medium transition-all duration-200 hover:bg-accent/10 sm:px-3">
+                Pro
+              </Link>
               <Link href="/contact" className="rounded-lg px-2.5 py-1.5 text-zinc-500 transition-all duration-200 hover:bg-white/[0.06] hover:text-zinc-200 sm:px-3">
                 Tip
               </Link>

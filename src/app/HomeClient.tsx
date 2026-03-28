@@ -107,6 +107,60 @@ function SmallCategoryBadge({ category }: { category: CategoryKey }) {
   );
 }
 
+const SIGNAL_ICONS: Record<string, string> = {
+  "billing_spike": "📈",
+  "ghost": "👻",
+  "debarred": "🚫",
+  "network": "🔗",
+  "default": "📡",
+};
+
+function StoryFeedSection() {
+  const [stories, setStories] = useState<{ id: string; type: string; headline: string; detail: string; delta: number | null; detectedAt: string }[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/story-feed")
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setStories(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  return (
+    <div className="mb-10">
+      <div className="mb-4 flex items-center gap-2">
+        <span className="text-lg">📡</span>
+        <h2 className="text-lg font-bold">Latest Signals — Last 24 Hours</h2>
+      </div>
+      {loading ? (
+        <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center text-sm text-zinc-500">Loading signals...</div>
+      ) : stories.length === 0 ? (
+        <div className="rounded-xl border border-white/10 bg-white/5 p-6 text-center text-sm text-zinc-500">
+          Signal detection initializing — check back soon
+        </div>
+      ) : (
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {stories.map((s) => (
+            <div key={s.id} className="rounded-xl border border-white/10 bg-white/5 p-4 transition hover:bg-white/10">
+              <div className="mb-2 text-2xl">{SIGNAL_ICONS[s.type] || SIGNAL_ICONS["default"]}</div>
+              <p className="text-sm font-medium text-zinc-100">{s.headline}</p>
+              {s.delta !== null && (
+                <p className={`mt-1 text-xs font-bold ${s.delta > 0 ? "text-red-400" : "text-green-400"}`}>
+                  {s.delta > 0 ? "+" : ""}{s.delta.toFixed(1)}%
+                </p>
+              )}
+              <p className="mt-1 text-xs text-zinc-500 line-clamp-2">{s.detail}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function HomeClient({
   initialStats,
   initialTop50,
@@ -235,6 +289,9 @@ export default function HomeClient({
           Try: &quot;California&quot; · &quot;Los Angeles CA&quot; · &quot;San Diego, California&quot; · &quot;90210&quot; · &quot;Provider Name&quot; · any street address
         </p>
       </form>
+
+      {/* ── Latest Signals ── */}
+      <StoryFeedSection />
 
       {/* ── Top 50 Highest Flagged ── */}
       <div className="mb-24">

@@ -1,0 +1,5 @@
+node_modules
+.next
+scripts/__pycache__
+scripts/cache
+scripts/results

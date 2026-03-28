@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabase } from "@/lib/supabase";
+import { randomUUID } from "crypto";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
@@ -11,7 +12,7 @@ export async function POST(request: NextRequest) {
 
   const { data, error } = await supabase
     .from("Tip")
-    .insert({ providerId, content })
+    .insert({ id: randomUUID(), providerId, content })
     .select()
     .single();
 

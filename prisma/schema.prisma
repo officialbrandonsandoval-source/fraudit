@@ -52,3 +52,35 @@ model ImprovementIdea {
   decision    String?
   createdAt   DateTime @default(now())
 }
+
+model Watchlist {
+  id          String    @id @default(cuid())
+  email       String
+  name        String?
+  filters     Json
+  lastSentAt  DateTime?
+  active      Boolean   @default(true)
+  tier        String    @default("reporter")
+  createdAt   DateTime  @default(now())
+}
+
+model StoryFeed {
+  id          String   @id @default(cuid())
+  type        String
+  providerId  String
+  headline    String
+  detail      String
+  delta       Float?
+  detectedAt  DateTime @default(now())
+  published   Boolean  @default(false)
+}
+
+model ProUser {
+  id               String   @id @default(cuid())
+  email            String   @unique
+  tier             String
+  stripeCustomerId String?
+  stripeSubId      String?
+  active           Boolean  @default(true)
+  createdAt        DateTime @default(now())
+}

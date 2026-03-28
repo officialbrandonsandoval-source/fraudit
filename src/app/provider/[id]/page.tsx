@@ -97,6 +97,70 @@ function BillingChart({ history }: { history: BillingEntry[] | null }) {
   );
 }
 
+function OwnerNetwork({ ownerId, currentProviderId }: { ownerId: string; currentProviderId: string }) {
+  const [siblings, setSiblings] = useState<{ id: string; name: string; city: string; state: string; riskScore: number; totalPaid: number }[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`/api/owner/${ownerId}/providers`)
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data)) setSiblings(data.filter((p: { id: string }) => p.id !== currentProviderId));
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [ownerId, currentProviderId]);
+
+  if (loading) {
+    return (
+      <div className="mb-8 rounded-xl border border-white/10 bg-white/5 p-6">
+        <h3 className="mb-2 text-lg font-semibold">Owner Network</h3>
+        <p className="text-sm text-zinc-500">Loading...</p>
+      </div>
+    );
+  }
+
+  if (siblings.length === 0) return null;
+
+  return (
+    <div className="mb-8 rounded-xl border border-purple-500/20 bg-purple-500/5 p-6">
+      <h3 className="mb-1 text-lg font-semibold text-purple-400">Owner Network</h3>
+      <p className="mb-4 text-sm text-zinc-400">
+        This owner operates <span className="font-medium text-white">{siblings.length} other {siblings.length === 1 ? "entity" : "entities"}</span>
+      </p>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {siblings.slice(0, 6).map((s) => (
+          <Link
+            key={s.id}
+            href={`/provider/${s.id}`}
+            className="flex items-center justify-between rounded-lg border border-white/10 bg-white/5 p-3 transition hover:bg-white/10"
+          >
+            <div>
+              <p className="text-sm font-medium text-zinc-100">{s.name}</p>
+              <p className="text-xs text-zinc-500">{s.city}, {s.state}</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-zinc-400">{formatDollar(s.totalPaid)}</span>
+              <span className={`rounded-full px-2 py-0.5 text-xs font-bold ${
+                s.riskScore >= 60 ? "bg-red-500/20 text-red-400" : s.riskScore >= 30 ? "bg-yellow-500/20 text-yellow-400" : "bg-green-500/20 text-green-400"
+              }`}>{s.riskScore}</span>
+            </div>
+          </Link>
+        ))}
+      </div>
+      {siblings.length > 6 && (
+        <p className="mt-2 text-xs text-zinc-500">{siblings.length - 6} more entities not shown</p>
+      )}
+      <Link
+        href={`/owner/${ownerId}`}
+        className="mt-4 inline-flex items-center gap-2 rounded-lg border border-purple-500/30 bg-purple-500/10 px-4 py-2 text-sm text-purple-400 transition hover:bg-purple-500/20"
+      >
+        View Owner Network →
+      </Link>
+    </div>
+  );
+}
+
 function RelatedEntities({ providerId }: { providerId: string }) {
   const [related, setRelated] = useState<RelatedProvider[]>([]);
   const [loading, setLoading] = useState(true);
@@ -157,6 +221,9 @@ export default function ProviderPage() {
   const [canShare, setCanShare] = useState(false);
   const [alertEmail, setAlertEmail] = useState("");
   const [alertStatus, setAlertStatus] = useState<"idle" | "saving" | "done" | "error">("idle");
+  const [dossierOpen, setDossierOpen] = useState(false);
+  const [dossierEmail, setDossierEmail] = useState("");
+  const [dossierStatus, setDossierStatus] = useState<"idle" | "loading" | "done" | "upgrade">("idle");
 
   useEffect(() => {
     setCanShare(typeof navigator !== "undefined" && typeof navigator.share === "function");
@@ -271,6 +338,14 @@ export default function ProviderPage() {
           >
             Submit a Tip
           </button>
+          <button
+            onClick={() => setDossierOpen(true)}
+            className="inline-flex items-center gap-1.5 rounded-lg border border-white/10 px-3 py-2 text-sm transition hover:bg-white/5"
+            title="Pro feature — unlock for $49/mo"
+          >
+            <svg className="h-4 w-4 text-zinc-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Dossier Report
+          </button>
         </div>
       </div>
 
@@ -326,6 +401,11 @@ export default function ProviderPage() {
       <div className="mb-8">
         <BillingChart history={provider.billingHistory} />
       </div>
+
+      {/* Owner Network */}
+      {provider.ownerId && (
+        <OwnerNetwork ownerId={provider.ownerId} currentProviderId={provider.id} />
+      )}
 
       {/* Related entities */}
       <div className="mb-8">
@@ -384,6 +464,73 @@ export default function ProviderPage() {
           <p className="mt-2 text-[11px] text-red-400/80">Something went wrong. Try again.</p>
         )}
       </div>
+
+      {/* Dossier modal */}
+      {dossierOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4">
+          <div className="w-full max-w-md rounded-xl border border-white/10 bg-zinc-900 p-6">
+            <h3 className="mb-4 text-lg font-semibold">Generate Dossier Report</h3>
+            {dossierStatus === "done" ? (
+              <div>
+                <p className="mb-4 text-green-400">Dossier PDF is downloading.</p>
+                <button onClick={() => { setDossierOpen(false); setDossierStatus("idle"); }} className="rounded-lg border border-white/10 px-4 py-2 text-sm transition hover:bg-white/5">Close</button>
+              </div>
+            ) : dossierStatus === "upgrade" ? (
+              <div>
+                <p className="mb-4 text-zinc-300">Dossier reports are a <span className="text-accent font-medium">Pro feature</span>.</p>
+                <div className="flex gap-2">
+                  <button onClick={() => { setDossierOpen(false); setDossierStatus("idle"); }} className="rounded-lg border border-white/10 px-4 py-2 text-sm transition hover:bg-white/5">Cancel</button>
+                  <Link href="/pricing" className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600">Unlock for $49/mo</Link>
+                </div>
+              </div>
+            ) : (
+              <>
+                <p className="mb-4 text-sm text-zinc-400">Enter your email to generate a full PDF dossier for this provider.</p>
+                <input
+                  type="email"
+                  value={dossierEmail}
+                  onChange={(e) => setDossierEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  className="mb-4 w-full rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm text-white placeholder-zinc-500 outline-none focus:border-accent"
+                />
+                <div className="flex gap-2">
+                  <button onClick={() => setDossierOpen(false)} className="rounded-lg border border-white/10 px-4 py-2 text-sm transition hover:bg-white/5">Cancel</button>
+                  <button
+                    disabled={dossierStatus === "loading" || !dossierEmail.trim()}
+                    onClick={async () => {
+                      setDossierStatus("loading");
+                      const res = await fetch("/api/dossier", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ providerId: params.id, email: dossierEmail }),
+                      });
+                      if (res.status === 403) {
+                        setDossierStatus("upgrade");
+                        return;
+                      }
+                      if (res.ok) {
+                        const blob = await res.blob();
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement("a");
+                        a.href = url;
+                        a.download = `fraudit-dossier-${provider?.name?.replace(/\s+/g, "-").toLowerCase() || "provider"}.pdf`;
+                        a.click();
+                        URL.revokeObjectURL(url);
+                        setDossierStatus("done");
+                      } else {
+                        setDossierStatus("idle");
+                      }
+                    }}
+                    className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition hover:bg-red-600 disabled:opacity-50"
+                  >
+                    {dossierStatus === "loading" ? "Generating..." : "Generate PDF"}
+                  </button>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Tip modal */}
       {tipOpen && (

@@ -39,7 +39,7 @@ USASPENDING_URL = "https://api.usaspending.gov/api/v2/search/spending_by_award/"
 
 FUZZY_EXACT_THRESHOLD = 0.85   # name-only match
 FUZZY_STATE_THRESHOLD = 0.75   # name + same state match
-USASPENDING_PAGES = 5          # 5 pages × 100 = 500 awards
+USASPENDING_PAGES = 50         # 50 pages × 100 = 5000 awards
 BATCH_SIZE = 200
 
 
